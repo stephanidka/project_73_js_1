@@ -1,0 +1,37 @@
+.search-results{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "title title"
+    "content-1 content-2";
+    justify-items: center; 
+    background-color: bisque;
+width: 40rem;  //изменить когда будут все блоки 
+height: 35rem;  //изменить когда будут все блоки 
+margin: auto;  //изменить когда будут все блоки 
+}
+.search-results__title{
+grid-area: title;
+@extend %font-family_julius;
+font-size: 24px;
+font-weight: 400;
+line-height: 26px;
+margin-bottom: 0;
+}
+.search-results__conteiner-one{
+grid-area: content-1;
+}
+.search-results__conteiner-two{
+grid-area: content-2;
+}
+// .search-results__img-one,
+// .search-results__img-two{
+// }
+.image{
+width: 13rem;  //изменить когда будут все блоки 
+height: 17rem;  //изменить когда будут все блоки 
+}
+.search-results__par-one,
+.search-results__par-two{
+@extend %font-family_jost;
+width: 12rem;  //изменить когда будут все блоки 
+}
