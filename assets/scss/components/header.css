@@ -1,0 +1,95 @@
+#header {
+  height: 8.813rem;
+  background-color: #1D1E24;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+  width: 234px;
+  height: 83px;
+  top: -219px;
+  left: -340;
+  color: white;
+  font-family: "Julius Sans One", sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+input {
+  width: 150px;
+  height: 38px;
+  top: -204px;
+  left: -25px;
+  border-radius: 10px;
+  border: none;
+}
+
+.sectors {
+  display: flex;
+}
+
+li {
+  list-style: none;
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.allFilms {
+  width: 61px;
+  height: 25px;
+  top: -197px;
+  left: 152px;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}
+
+.img {
+  background-color: #1D1E24;
+}
+
+button {
+  background-color: #1D1E24;
+  border: none;
+}
+
+.contactUs {
+  width: 86px;
+  height: 25px;
+  top: -197px;
+  left: 230px;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}
+
+.login {
+  width: 61px;
+  height: 25px;
+  top: -197px;
+  left: 324px;
+  font-family: "Jost", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}/*# sourceMappingURL=header.css.map */
