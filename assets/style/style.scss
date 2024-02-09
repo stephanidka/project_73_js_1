@@ -1,4 +1,6 @@
 @import "../scss/global/_normalize.css";
-
-
+@import "../scss/components/header.scss";
+@import "../scss/global/fonts.scss";
+@import "../scss/abstracts/variables.scss";
+@import "../scss/abstracts/templates.scss";
 @import "../scss/components/section_find";
