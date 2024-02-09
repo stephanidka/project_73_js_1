@@ -2,10 +2,6 @@
     display: flex;
     color: white;
     font-family: "Julius Sans One", sans-serif;
-}
-
-.footer_wrapper {
-    display: flex;
     justify-content: space-around;
     background-color: #1D1E24;
     margin: 5px;
@@ -21,9 +17,48 @@
 
 .button {
     color: white;
-    font-family: "Julius Sans One", sans-serif;
+    @extend %font-family_julius;
 }
 
 .footer__icon-up {
-    color: white;
+    position: fixed;
+    bottom: 15px;
+    right: 2%;
+    z-index: 1;
+    border: medium none;
+    background-image: none;
+    background: transparent;
+    fill: lightgrey;
+    height: 15%;
+    width: 15%;
+}
+
+.messengers {
+    margin: 5px;
+}
+
+@media screen and (max-width: 1023px) {
+
+    .footer_wrapper,
+    .button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2%;
+        font-size: 0.5em;
+    }
+
+    .footer__icon-up {
+        height: 5%;
+        width: 5%;
+    }
+
+    #e-mail {
+        width: 20%;
+        height: 10%;
+    }
+
+    .messengers {
+        display: grid;
+    }
 }
