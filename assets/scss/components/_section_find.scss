@@ -22,11 +22,13 @@
 }
 .search-results__conteiner-two{
     grid-area: content-2;
+
 }
 // .search-results__img-one,
 // .search-results__img-two{
 // }
 .image{
+
     width: 13rem;  //изменить когда будут все блоки 
     height: 17rem;  //изменить когда будут все блоки 
 }
@@ -35,3 +37,4 @@
     @extend %font-family_jost;
     width: 12rem;  //изменить когда будут все блоки 
 }
+
