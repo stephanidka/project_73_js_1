@@ -6,22 +6,4 @@ $text-black: #000000;
     color: $text-black;
 } */
 
-.right_side {
-	display: flex;
-	background-color: #d9d9d9;
-	width: 150px;
-	height: 500px;
-	justify-content: center;
-
-	.filmlist_title {
-		margin-top: 20px;
-		margin-left: auto;
-		margin-right: auto;
-		color: #1d1e24;
-		.title_subscribe {
-			color: #4c4c4c;
-		}
-	}
-}
-
 $text-white: #ffffff;
