@@ -8,6 +8,8 @@
     <title>Something to watch</title>
   </head>
   <body>
+
+    <div class="grid-container">
     <!-- блок Софии начало -->
     <header id="header">
       <div class="title">Something to WATCH</div>
@@ -30,8 +32,7 @@
       </ul>
     </header>
     <!-- блок Cофии конец -->
-
-
+    <main class="main-content">
     <!-- блок Арины начало -->
 <section class="section-search">
   <h2 class="section-search__title_one">Your choice:</h2>
@@ -57,7 +58,7 @@
 </section>
     <!-- блок Арины конец -->
 
-    <main>
+    
     <!-- блок Юли начало -->
       <section class="search-results">
         <h2 class="search-results__title">What did we find:</h2>
@@ -87,21 +88,29 @@
         </div>
       </section>
       <!-- блок Юли конец -->
-
-      <div class="right_side">
+      <!-- блок Степаниды начало -->
+      <section class="right_side">
         <div class="filmlist">
           <div class="filmlist_title">
-            Wanna watch:
-            <div class="title_subscribe">my film list</div>
+          Wanna watch:
+          
           </div>
-          <div class="film_list-movie"><input type="checkbox" />5-th Element</div>
+          <div class="title_subscribed">my film list</div>
           <div class="film_list-movie">
-            <input type="checkbox" />Addams Family
+            <input class="check_movie" type="checkbox" />
+            5-th Element
           </div>
-          <div class="film_list-movie"><input type="checkbox" />Snatch</div>
+          <div class="film_list-movie">
+            <input class="check_movie" type="checkbox" />
+            Addams Family
+          </div>
+          <div class="film_list-movie">
+            <input class="check_movie" type="checkbox" />
+            Snatch
+          </div>
         </div>
-      </div>
-      <script src="assets/script.js"></script>
+      </section>
+      <!-- блок Степаниды конец -->
     </main>
     <!-- Lena -->
     <footer class="footer">
@@ -134,7 +143,9 @@
         </div>
 
     </footer>
+  </div>
     <!-- Lena -->
+    <script src="assets/script.js"></script>
 </body>
 
 </html>
