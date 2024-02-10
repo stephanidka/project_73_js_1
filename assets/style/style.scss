@@ -1,7 +1,8 @@
-@import "../scss/global/_normalize.css";
-@import "../scss/components/header.scss";
+@import "../scss/global/_normalize.scss";
 @import "../scss/global/fonts.scss";
 @import "../scss/abstracts/variables.scss";
 @import "../scss/abstracts/templates.scss";
-@import "../scss/components/section_find";
-@import "../scss/components/section_search";
+@import "../scss/components/section_search.scss";
+@import "../scss/components/header.scss";
+@import "../scss/components/section_find.scss";
+@import "../scss/components/footer.scss";
