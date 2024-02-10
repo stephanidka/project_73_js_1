@@ -8,9 +8,6 @@
 		"input_tag   input_tag   input_tag";
 	justify-items: center;
 	background-color: #4c4c4c;
-	width: 40rem;
-	height: 35rem;
-	margin: auto;
 	&__title_one {
 		grid-area: title_one;
 		@extend %font-family_jost;
@@ -21,7 +18,7 @@
 	&__title_two {
 		@extend %font-family_jost;
 		grid-area: title_two;
-		padding: 0 0 0 11rem;
+		padding: 0 1rem 0 11rem;
 		justify-items: end;
 		color: $text-white;
 		font-weight: 400;
@@ -30,7 +27,7 @@
 	&__title_three {
 		@extend %font-family_jost;
 		grid-area: title_three;
-		padding: 0 11rem 0 0;
+		padding: 0 11rem 0 1rem;
 		width: 3rem;
 		color: $text-white;
 		font-weight: 400;
