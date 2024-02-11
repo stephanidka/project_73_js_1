@@ -5,6 +5,9 @@
     align-items: flex-start;
     align-items: center;
     flex-direction: column;
+    @media screen and (max-width: 450px) {
+		width: 100%;
+    }
 }
 .filmlist{
     display: flex;
@@ -14,22 +17,34 @@
 .filmlist_title{
     @extend %font-family_jost;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.5rem;
     margin-top: 20px;
     color: #1D1E24;
+    @media screen and (max-width: 450px) {
+        font-size: 2.5rem;
+    }
 
 }
 .title_subscribed{
     @extend %font-family_jost;
     font-weight: 400;
+    font-size: 1.5rem;
     color: #4C4C4C;
-    margin-bottom: 50px
+    margin-bottom: 50px;
+    @media screen and (max-width: 450px) {
+        margin-bottom: 2vw;
+        font-size: 2.5rem;
+    }
 }
 
 .film_list-movie{
     @extend %font-family_jost;
     font-weight: 400;
+    font-size: 1rem;
     align-self: flex-start;
+    @media screen and (max-width: 450px) {
+        font-size: 2.5rem;
+    }
 }
 .check_movie {
     margin-right: 5px;
