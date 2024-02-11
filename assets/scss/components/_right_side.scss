@@ -1,0 +1,43 @@
+.right_side{
+    display: flex;
+    background-color: #D9D9D9;
+	width: 15rem;
+	height: 35rem;
+    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
+    // @extend %font-family_jost;
+}
+.filmlist_title{
+    @extend %font-family_jost;
+    display: grid;
+    justify-content: center;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #1D1E24;
+
+}
+.title_subscribed{
+    @extend %font-family_jost;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    // margin-top: 20px; 
+    margin-left: auto;
+    margin-right: auto;
+    color: #4C4C4C;
+    margin-bottom: 50px
+}
+
+.film_list-movie{
+    @extend %font-family_jost;
+    font-weight: 400;
+}
+.check_movie {
+    margin-right: 5px;
+    width: 3rem;
+    height: 1.5rem;
+}
