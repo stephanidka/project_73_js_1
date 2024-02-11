@@ -6,9 +6,6 @@
     justify-items: center; 
     background-color: bisque;
     width: 100%;
-    @media screen and (max-width: 1220px) {
-
-    }
 }
 .search-results__title{
     grid-area: title;
@@ -17,9 +14,6 @@
     font-weight: 400;
     line-height: 26px;
     margin-bottom: 0;
-    @media screen and (max-width: 1220px) {
-        
-    }
 }
 .search-results__conteiner-one{
     grid-area: content-1;
@@ -31,15 +25,18 @@
 .image{
     width: 13rem; 
     height: 17rem;  
-
-    @media screen and (max-width: 1220px) {
-
+    @media screen and (max-width: 740px) {
+        width: 10rem; 
+        height: 14rem; 
     }
 }
 .search-results__par-one,
 .search-results__par-two{
     @extend %font-family_jost;
     width: 12rem; 
+    @media screen and (max-width: 740px) {
+        width: 6rem;
+    }
 }
 .grid-container {
     display: grid;
