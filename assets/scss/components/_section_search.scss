@@ -14,7 +14,7 @@
 	&__title_one {
 		grid-area: title_one;
 		@extend %font-family_jost;
-		color: $text-white;
+		color: white;
 		font-weight: 400;
 		line-height: 26px;
 	}
@@ -23,7 +23,7 @@
 		grid-area: title_two;
 		padding: 0 0 0 11rem;
 		justify-items: end;
-		color: $text-white;
+		color: white;
 		font-weight: 400;
 		line-height: 26px;
 	}
@@ -32,7 +32,7 @@
 		grid-area: title_three;
 		padding: 0 11rem 0 0;
 		width: 3rem;
-		color: $text-white;
+		color: white;
 		font-weight: 400;
 		line-height: 26px;
 	}
@@ -102,6 +102,6 @@
 		margin: auto;
 	}
 	&__label_tag {
-		color: $text-white;
+		color: white;
 	}
 }
