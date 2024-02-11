@@ -1,11 +1,12 @@
 .footer_wrapper {
-    display: flex;
-    color: white;
-    font-family: "Julius Sans One", sans-serif;
-    justify-content: space-around;
-    background-color: #1D1E24;
-    margin: 5px;
-    align-items: center
+
+	display: flex;
+	color: white;
+	font-family: "Julius Sans One", sans-serif;
+	justify-content: space-around;
+	background-color: #1d1e24;
+	margin: 5px;
+	align-items: center;
 }
 
 .facebook,
@@ -63,3 +64,4 @@
         display: grid;
     }
 }
+
