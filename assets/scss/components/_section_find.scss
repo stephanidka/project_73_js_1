@@ -28,7 +28,6 @@
 // .search-results__img-two{
 // }
 .image{
-
     width: 13rem;  //изменить когда будут все блоки 
     height: 17rem;  //изменить когда будут все блоки 
 }
@@ -37,4 +36,16 @@
     @extend %font-family_jost;
     width: 12rem;  //изменить когда будут все блоки 
 }
+// .middle{
+// display: grid;
+// grid-template-columns: 1fr 1fr 1fr;
+//     grid-template-areas: "right search ";
+// }
+// .search-results{
+//     grid-area: search;
+
+// }
+// .right_side{
+//     grid-area: right;
+// }
 
