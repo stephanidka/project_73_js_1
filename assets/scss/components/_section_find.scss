@@ -5,9 +5,8 @@
     "content-1 content-2";
     justify-items: center; 
     background-color: bisque;
-    width: 40rem;  //изменить когда будут все блоки 
-    height: 35rem;  //изменить когда будут все блоки 
-    margin: auto;  //изменить когда будут все блоки 
+    width: 100%;
+    height: 35rem; 
 }
 .search-results__title{
     grid-area: title;
@@ -24,28 +23,14 @@
     grid-area: content-2;
 
 }
-// .search-results__img-one,
-// .search-results__img-two{
-// }
 .image{
-    width: 13rem;  //изменить когда будут все блоки 
-    height: 17rem;  //изменить когда будут все блоки 
+    width: 13rem; 
+    height: 17rem;  
 }
 .search-results__par-one,
 .search-results__par-two{
     @extend %font-family_jost;
-    width: 12rem;  //изменить когда будут все блоки 
+    width: 12rem; 
 }
-// .middle{
-// display: grid;
-// grid-template-columns: 1fr 1fr 1fr;
-//     grid-template-areas: "right search ";
-// }
-// .search-results{
-//     grid-area: search;
 
-// }
-// .right_side{
-//     grid-area: right;
-// }
 
