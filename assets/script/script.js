@@ -114,6 +114,7 @@
 
 
 // Lena
+const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
     e.preventDefault();
     const emailCheck = document.getElementById("e-mail");
