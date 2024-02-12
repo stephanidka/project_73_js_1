@@ -1,5 +1,6 @@
 .footer_wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     color: white;
     @extend %font-family_jost;
     justify-content: space-around;
@@ -29,6 +30,15 @@
 .messengers {
     display: flex;
     margin: 5px;
+    justify-content: center;
+}
+
+.facebook,
+.insta,
+.twitter {
+    padding: 1%;
+    width: 10%;
+    height: 10%;
 }
 
 @media screen and (max-width: 1023px) {
@@ -52,7 +62,11 @@
         height: 10%;
     }
 
-    .messengers {
-        display: flex;
+    .facebook,
+    .insta,
+    .twitter {
+        padding: 1%;
+        width: 5%;
+        height: 5%;
     }
 }
