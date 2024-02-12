@@ -7,6 +7,7 @@
     background-color: #1d1e24;
     align-items: center;
     padding-left: 2%;
+    padding-right: 2%;
 }
 
 .button {
@@ -14,17 +15,20 @@
     @extend %font-family_jost;
 }
 
-.footer__icon-up {
-    position: fixed;
-    bottom: 15px;
-    right: 2%;
-    z-index: 1;
-    border: medium none;
-    background-image: none;
-    background: transparent;
-    fill: lightgrey;
-    height: 15%;
-    width: 15%;
+// .footer__icon-up {
+//     position: fixed;
+//     bottom: 15px;
+//     right: 2%;
+//     z-index: 1;
+//     border: medium none;
+//     background-image: none;
+//     background: transparent;
+//     fill: lightgrey;
+//     height: 15%;
+//     width: 15%;
+// }
+#e-mail {
+    color: #1d1e24;
 }
 
 .messengers {
