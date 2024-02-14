@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+<div id="container">
+    <h1>Registration</h1>
+    <div class="name">
+        <input type="text" id="name_input" placeholder="Name" minlength="2" maxlength="20" required>
+    </div>
+    <div class="email">
+        <input type="email" id="email_input" placeholder="E-mail" required>
+    </div>
+    <div class="age">
+        <input type="number" min ="0" id="age_input" placeholder="Your age" required>
+    </div>
+    <!-- <div class="gender">
+        Man<input type="radio" name="sex" id="man" class="radio-styles"> |
+        Woman<input type="radio" name="sex" id="woman" class="radio-styles"> |
+        Diverse<input type="radio" name="sex" id="diverse" class="radio-styles">
+    </div> -->
+    <!-- <div class="profession">
+        <select name="prof" id="profession_input" required>
+            <option value="" disabled selected hidden>Your profession</option>
+            <option value="1">Medizin</option>
+            <option value="2">Education</option>
+            <option value="3">IT</option>
+            <option value="4">Design</option>
+            <option value="5">Engineering</option>
+            <option value="6">Trading</option>
+            <option value="7">Other</option>
+        </select>
+    </div> -->
+    <div class="password">
+        <input type="password" id="password_input" placeholder="Password" required>
+    </div>
+    <div class="repeat">
+        <input type="password" id="repeat_input" placeholder="Repeat password" required>
+    </div>
+    <div class="agree">
+        <input type="checkbox" class="radio-styles" id="checkbox_input"> I agree all of this stuff
+    </div>
+    <div>
+        <button id="validate" required>Submit</button>
+    </div>
+
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
