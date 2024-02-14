@@ -1,39 +1,163 @@
-// import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client';
+// import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client'; //это для подключения библиотеки
 // const kp = new KinopoiskDev('0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3');
+
 // const {data} = await kp.movie.getById(666);
-// console.log(data); //это для подключения библиотеки
+// console.log(data); //это как мы будем писать код, если она подключится :)
 
 const findButton = document.querySelector(".findButton") 
 const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
 const headers = {
     "X-API-KEY": token
 };
-// вот это код из документации
-async function getMoviesByName(name, page = 1, limit = 1) {
+// // вот это код из документации. Поиск по названию) 
+// async function getMoviesByName(name, page = 1, limit = 1) {
+//     try {
+//     const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
+//         "query": name,
+//         "limit": limit,
+//         "page": page,
+//     }), {
+//         headers: headers
+//     });
+
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     const movies = await response.json();
+//     return movies.docs;
+
+//     } catch (error) {
+//     console.error(error);
+//     }
+// }
+// document.querySelector('.findButton').addEventListener('click', async () => {
+//     try {
+//         const movies = await getMoviesByName("аватар путь воды");
+//         console.log(movies);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }); // тут теперь висит правильный обработчик события.
+
+
+// Фильтрация карточек
+function getSearchParams() {
+    const country = document.querySelector(".section-search__input_search_one").value.trim();
+    const year = document.querySelector(".section-search__input_search_two").value.trim();
+    const genres = Array.from(document.querySelectorAll(".container-input__tag:checked")).map(input => input.nextSibling.textContent.trim());
+    return { country, year, genres };
+    }
+
+  // Функция для отправки запроса на сервер с параметрами фильтрации
+async function filterMovies() {
+    const {country, year, genres} = getSearchParams();
     try {
-    const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
-        "query": name,
-        "limit": limit,
-        "page": page,
-    }), {
-        headers: headers
+        const response = await fetch('https://api.kinopoisk.dev/v1.4/movie' + new URLSearchParams({
+            "limit": 1,
+            "page": 1,
+            "genres.name": genres,
+        }), 
+        {
+            headers: headers
+        }
+        );
+    
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        console.log("Filtered parameters:", { country, year, genres });
+        // const movies = await response.json();
+        // return movies.docs;
+    
+        } catch (error) {
+        console.error(error);
+        }
+    }
+
+    document.querySelector('.findButton').addEventListener('click', async () => {
+        try {
+            const movies = await filterMovies();
+            console.log(movies);
+        } catch (error) {
+            console.error(error);
+        }
     });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
 
-    const movies = await response.json();
-    return movies.docs;
 
-    } catch (error) {
-    console.error(error);
-    }
-}
 
-getMoviesByName("аватар путь воды").then(movies => {
-    console.log(movies);
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Это пусть будет пока)
 // function getObj(){
@@ -58,75 +182,7 @@ getMoviesByName("аватар путь воды").then(movies => {
 //         console.error('There was a problem with your fetch operation:', error);
 //     });
 // }
-
-    document.querySelector('.findButton').addEventListener('click', getMoviesByName);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// document.querySelector('.findButton').addEventListener('click', getMoviesByName);
 
 
 
