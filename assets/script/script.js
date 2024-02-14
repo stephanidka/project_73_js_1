@@ -69,6 +69,44 @@ getMoviesByName("аватар путь воды").then(movies => {
 });
  */
 
+// import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client';
+// const kp = new KinopoiskDev('0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3');
+// const {data} = await kp.movie.getById(666);
+// console.log(data); //это для подключения библиотеки
+
+const findButton = document.querySelector(".findButton") 
+const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
+const headers = {
+    "X-API-KEY": token
+};
+// вот это код из документации
+async function getMoviesByName(name, page = 1, limit = 1) {
+    try {
+    const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
+        "query": name,
+        "limit": limit,
+        "page": page,
+    }), {
+        headers: headers
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const movies = await response.json();
+    return movies.docs;
+
+    } catch (error) {
+    console.error(error);
+    }
+}
+
+getMoviesByName("аватар путь воды").then(movies => {
+    console.log(movies);
+});
+
+
 //Это пусть будет пока)
 // function getObj(){
 //     const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
@@ -93,11 +131,103 @@ getMoviesByName("аватар путь воды").then(movies => {
 //     });
 // }
 
-document
-	.querySelector(".findButton")
-	.addEventListener("click", getMoviesByName);
+
+document.querySelector(".findButton").addEventListener("click", getMoviesByName);
 
 // Lena
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Lena
+
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
 	e.preventDefault();
