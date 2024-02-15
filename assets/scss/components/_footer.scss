@@ -33,6 +33,14 @@
     height: 10%;
 }
 
+.message {
+    display: flex;
+    color: white;
+    @extend %font-family_jost;
+    background-color: #1d1e24;
+    justify-content: center;
+}
+
 @media screen and (max-width: 1023px) {
 
     .footer_wrapper,

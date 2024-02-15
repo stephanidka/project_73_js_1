@@ -8,15 +8,15 @@ const repeatInput = document.getElementById('repeat_input');
 const checkboxInput = document.getElementById('checkbox_input')
 const validateButton = document.getElementById("validate");
 
-function submitModal(){
+function submitModal() {
     let nameValue = nameInput.value;
-    if (nameValue.length < 2) { 
+    if (nameValue.length < 2) {
         passwordInput.value = "";
         repeatInput.value = "";
         alert("Enter your name please, at least 2 characters");
         return;
     } else {
-    
+
     };
     let emailValue = emailInput.value;
     const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +33,7 @@ function submitModal(){
         passwordInput.value = "";
         repeatInput.value = "";
         alert("Enter your age please");
-    return;
+        return;
     }
     let passwordValue = passwordInput.value;
     let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
@@ -42,10 +42,10 @@ function submitModal(){
         repeatInput.value = "";
         alert("Enter your password please");
         return;
-    } 
-    else {   
+    }
+    else {
     };
-    
+
     let repeatValue = repeatInput.value;
     if (repeatValue.length === 0) {
         alert("Repeat your password please");
@@ -54,12 +54,12 @@ function submitModal(){
     else {
     };
 
-    if(!checkboxInput.checked){
+    if (!checkboxInput.checked) {
         alert("Please accept the terms and conditions")
         return;
     }
 
-    if (passwordValue === repeatValue){
+    if (passwordValue === repeatValue) {
         alert("Welcome!");
     }
     else {
@@ -68,22 +68,22 @@ function submitModal(){
 };
 validateButton.addEventListener('click', submitModal);
 //чекбоксы активны при регистрации 
-document.getElementById('validate').addEventListener('click', function(){
+document.getElementById('validate').addEventListener('click', function () {
     const checkMovie = document.querySelectorAll('.check_movie');
     checkMovie.forEach((elem) => {
         elem.removeAttribute('disabled');
     });
 })
-    
+
 // модальное окно 
 const myModal = document.getElementById("my-modal"),
     openModal = document.querySelector(".open_modal");
 
-openModal.addEventListener("click", function() {
+openModal.addEventListener("click", function () {
     myModal.classList.add("open");
 })
 // Закрыть модальное окно
-document.getElementById("close-my-modal-btn").addEventListener("click", function() {
+document.getElementById("close-my-modal-btn").addEventListener("click", function () {
     myModal.classList.remove("open");
 })
 // Закрыть модальное окно при нажатии на Esc
@@ -106,16 +106,16 @@ myModal.addEventListener('click', event => {
 const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
-  const headers = {
-    accept: "application/json",
-    "X-API-KEY": API_KEY,
-  };
+    const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
+    const headers = {
+        accept: "application/json",
+        "X-API-KEY": API_KEY,
+    };
 
-  const response = await fetch(url, { headers });
-  const data = await response.json();
+    const response = await fetch(url, { headers });
+    const data = await response.json();
 
-  return data;
+    return data;
 };
 
 // Пример использования
@@ -256,7 +256,7 @@ getMoviesByName("аватар путь воды").then(movies => {
 //     });
 // }
 
-    // document.querySelector('.findButton').addEventListener('click', getMoviesByName);
+// document.querySelector('.findButton').addEventListener('click', getMoviesByName);
 
 
 //КОНЕЦ ПОИСКА
@@ -362,35 +362,35 @@ function getSeries() {
 console.log(seriesArray);
 
 
-    // Lena
+// Lena
 
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
-	e.preventDefault();
-	const emailCheck = document.getElementById("e-mail");
-	const expression =
-		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	const message = document.querySelector(".message");
+    e.preventDefault();
+    const emailCheck = document.getElementById("e-mail");
+    const expression =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const message = document.querySelector(".message");
 
-	if (!validate(expression, emailCheck.value)) {
-		notValid(submit, message, "Your email is invalid.");
-	} else {
-		valid(submit, message, "You have successfully subscribed.");
-	}
+    if (!validate(expression, emailCheck.value)) {
+        notValid(submit, message, "Your email is invalid.");
+    } else {
+        valid(submit, message, "You have successfully subscribed.");
+    }
 
-	function validate(regex, submit) {
-		return regex.test(submit);
-	}
-	function notValid(submit, el, mess) {
-		submit.classList.add("is-invalid");
-		el.innerHTML = mess;
-	}
-	function valid(submit, el, mess) {
-		submit.classList.remove("is-invalid");
-		submit.classList.add("is-valid");
-		el.innerHTML = mess;
-	}
+    function validate(regex, submit) {
+        return regex.test(submit);
+    }
+    function notValid(submit, el, mess) {
+        submit.classList.add("is-invalid");
+        el.innerHTML = mess;
+    }
+    function valid(submit, el, mess) {
+        submit.classList.remove("is-invalid");
+        submit.classList.add("is-valid");
+        el.innerHTML = mess;
+    }
 }
 submit.addEventListener("click", subscribeCheckValidity);
 // Lena
