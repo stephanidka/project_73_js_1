@@ -74,7 +74,7 @@ getMoviesByName("аватар путь воды").then(movies => {
 // const {data} = await kp.movie.getById(666);
 // console.log(data); //это для подключения библиотеки
 
-const findButton = document.querySelector(".findButton") 
+const findButton = document.querySelector(".findButton")
 const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
 const headers = {
     "X-API-KEY": token
@@ -82,23 +82,23 @@ const headers = {
 // вот это код из документации
 async function getMoviesByName(name, page = 1, limit = 1) {
     try {
-    const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
-        "query": name,
-        "limit": limit,
-        "page": page,
-    }), {
-        headers: headers
-    });
+        const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
+            "query": name,
+            "limit": limit,
+            "page": page,
+        }), {
+            headers: headers
+        });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    const movies = await response.json();
-    return movies.docs;
+        const movies = await response.json();
+        return movies.docs;
 
     } catch (error) {
-    console.error(error);
+        console.error(error);
     }
 }
 
@@ -132,11 +132,11 @@ getMoviesByName("аватар путь воды").then(movies => {
 // }
 
 
+
 document.querySelector(".findButton").addEventListener("click", getMoviesByName);
 
 // Lena
 
-  
 
 
 
@@ -224,9 +224,26 @@ document.querySelector(".findButton").addEventListener("click", getMoviesByName)
 
 
 
+
+
+// Lena
+// const switcher = document.querySelector(".section-search__label");
+// console.log(switcher);
+let seriesArray = []; //series array
+
+function getSeries() {
+    let checkbox = document.querySelector('input[name="switcher"]:checked');
+    let output = [];
+    checkbox.forEach((checkbox) => {
+        output.push(checkbox.value);
+    });
+    seriesArray = output;
+}
+console.log(seriesArray);
 
 
     // Lena
+
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
