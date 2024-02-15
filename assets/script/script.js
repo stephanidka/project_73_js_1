@@ -100,7 +100,30 @@ myModal.addEventListener('click', event => {
     if (event._isClickWithInModal) return;
     event.currentTarget.classList.remove('open');
 });
+//НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
+
+const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
+
+const fetchMoviesByName = async (query, page = 1, limit = 10) => {
+  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
+  const headers = {
+    accept: "application/json",
+    "X-API-KEY": API_KEY,
+  };
+
+  const response = await fetch(url, { headers });
+  const data = await response.json();
+
+  return data;
+};
+
+// Пример использования
+const movies = await fetchMoviesByName("avatar");
+
+console.log(movies); // Выводит список фильмов
+
+//КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
 // const findButton = document.querySelector(".findButton");
 
 // function getObj() {
@@ -177,38 +200,37 @@ getMoviesByName("аватар путь воды").then(movies => {
 // const {data} = await kp.movie.getById(666);
 // console.log(data); //это для подключения библиотеки
 
-const findButton = document.querySelector(".findButton") 
-const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
-const headers = {
-    "X-API-KEY": token
-};
+// const findButton = document.querySelector(".findButton") 
+// const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
+// const headers = {
+//     "X-API-KEY": token
+// };
 // вот это код из документации
-async function getMoviesByName(name, page = 1, limit = 1) {
-    try {
-    const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
-        "query": name,
-        "limit": limit,
-        "page": page,
-    }), {
-        headers: headers
-    });
+// async function getMoviesByName(name, page = 1, limit = 1) {
+//     try {
+//     const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
+//         "query": name,
+//         "limit": limit,
+//         "page": page,
+//     }), {
+//         headers: headers
+//     });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
+//     if (!response.ok) {
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//     }
 
-    const movies = await response.json();
-    return movies.docs;
+//     const movies = await response.json();
+//     return movies.docs;
 
-    } catch (error) {
-    console.error(error);
-    }
-}
+//     } catch (error) {
+//     console.error(error);
+//     }
+// }
 
-getMoviesByName("аватар путь воды").then(movies => {
-    console.log(movies);
-});
-
+// getMoviesByName("аватар путь воды").then(movies => {
+//     console.log(movies);
+// });
 
 //Это пусть будет пока)
 // function getObj(){
@@ -234,102 +256,114 @@ getMoviesByName("аватар путь воды").then(movies => {
 //     });
 // }
 
+    // document.querySelector('.findButton').addEventListener('click', getMoviesByName);
 
-document.querySelector(".findButton").addEventListener("click", getMoviesByName);
+
+//КОНЕЦ ПОИСКА
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Lena
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// const switcher = document.querySelector(".section-search__label");
+// console.log(switcher);
+let seriesArray = []; //series array
+
+function getSeries() {
+    let checkbox = document.querySelector('input[name="switcher"]:checked');
+    let output = [];
+    checkbox.forEach((checkbox) => {
+        output.push(checkbox.value);
+    });
+    seriesArray = output;
+}
+console.log(seriesArray);
 
 
     // Lena
+
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
