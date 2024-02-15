@@ -353,6 +353,7 @@ let seriesArray = []; //series array
 
 function getSeries() {
     let checkbox = document.querySelector('input[name="switcher"]:checked');
+    console.log(checkbox);
     let output = [];
     checkbox.forEach((checkbox) => {
         output.push(checkbox.value);
