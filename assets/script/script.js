@@ -67,6 +67,13 @@ function submitModal(){
     };
 };
 validateButton.addEventListener('click', submitModal);
+//чекбоксы активны при регистрации 
+document.getElementById('validate').addEventListener('click', function(){
+    const checkMovie = document.querySelectorAll('.check_movie');
+    checkMovie.forEach((elem) => {
+        elem.removeAttribute('disabled');
+    });
+})
     
 // модальное окно 
 const myModal = document.getElementById("my-modal"),
