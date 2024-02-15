@@ -65,15 +65,15 @@ function submitModal(){
     else {
         alert("Password mismatch");
     };
-};
-validateButton.addEventListener('click', submitModal);
-//чекбоксы активны при регистрации 
-document.getElementById('validate').addEventListener('click', function(){
+
+    //чекбоксы активны при регистрации 
     const checkMovie = document.querySelectorAll('.check_movie');
     checkMovie.forEach((elem) => {
         elem.removeAttribute('disabled');
     });
-})
+};
+validateButton.addEventListener('click', submitModal);
+
     
 // модальное окно 
 const myModal = document.getElementById("my-modal"),
