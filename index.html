@@ -1,299 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="./assets/images/video-camera.png" type="image/png" />
-    <link rel="stylesheet" href="./assets/style/style.css" />
-    <title>Something to watch</title>
-  </head>
-  <body>
-    <div class="grid-container">
-      <!-- блок Софии начало -->
-      <header id="header">
-        <div class="title">Something to WATCH</div>
-        <div class="search">
-          <button>
-            <img
-              src="assets/icons/search_licon 1.png"
-              alt="search"
-              class="img"
-            />
-          </button>
-          <input type="text" class="inputHeader" placeholder="Search" />
-        </div>
-        <div>
-          <li class="contactUs"><a href="#">Contact us</a></li>
-        </div>
-        <div>
-          <button class="open_modal login">Login</button>
-          <div class="modal" id="my-modal">
-            <div class="modal__box">
-              <button class="modal__close-btn" id="close-my-modal-btn">
-                <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
-                    fill="#333333" />
-                  <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
-                </svg>
-              </button>
-              <div id="container">
-                <h1>Registration</h1>
-                <div class="name">
-                  <input type="text" class="input_form" id="name_input" placeholder="Name" minlength="2" maxlength="20"
-                    required />
-                </div>
-                <div class="email">
-                  <input type="email" class="input_form" id="email_input" placeholder="E-mail" required />
-                </div>
-                <div class="age">
-                  <input type="number" class="input_form" min="0" id="age_input" placeholder="Your age" required />
-                </div>
-                <div class="password">
-                  <input type="password" class="input_form" id="password_input" placeholder="Password" required />
-                </div>
-                <div class="repeat">
-                  <input type="password" class="input_form" id="repeat_input" placeholder="Repeat password" required />
-                </div>
-                <div class="agree">
-                  <input type="checkbox" class="radio-styles" id="checkbox_input" />
-                  I agree all of this stuff
-                </div>
-                <div>
-                  <button id="validate" required>Submit</button>
-                </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="./assets/images/video-camera.png" type="image/png" />
+  <link rel="stylesheet" href="./assets/style/style.css" />
+  <title>Something to watch</title>
+</head>
+
+<body>
+  <div class="grid-container">
+    <!-- блок Софии начало -->
+    <header id="header">
+      <div class="title">Something to WATCH</div>
+      <div class="search">
+        <button>
+          <img src="assets/icons/search_licon 1.png" alt="search" class="img" />
+        </button>
+        <input type="text" class="inputHeader" placeholder="Search" />
+      </div>
+      <div>
+        <li class="contactUs"><a href="#">Contact us</a></li>
+      </div>
+      <div>
+        <button class="open_modal login">Login</button>
+        <div class="modal" id="my-modal">
+          <div class="modal__box">
+            <button class="modal__close-btn" id="close-my-modal-btn">
+              <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                  fill="#333333" />
+                <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
+              </svg>
+            </button>
+            <div id="container">
+              <h1>Registration</h1>
+              <div class="name">
+                <input type="text" class="input_form" id="name_input" placeholder="Name" minlength="2" maxlength="20"
+                  required />
+              </div>
+              <div class="email">
+                <input type="email" class="input_form" id="email_input" placeholder="E-mail" required />
+              </div>
+              <div class="age">
+                <input type="number" class="input_form" min="0" id="age_input" placeholder="Your age" required />
+              </div>
+              <div class="password">
+                <input type="password" class="input_form" id="password_input" placeholder="Password" required />
+              </div>
+              <div class="repeat">
+                <input type="password" class="input_form" id="repeat_input" placeholder="Repeat password" required />
+              </div>
+              <div class="agree">
+                <input type="checkbox" class="radio-styles" id="checkbox_input" />
+                I agree all of this stuff
+              </div>
+              <div>
+                <button id="validate" required>Submit</button>
               </div>
             </div>
           </div>
+        </div>
         </ul>
-      </header>
-      <!-- блок Cофии конец -->
-      <main class="main-content">
-				<!-- блок Арины начало -->
-				<section class="section-search">
-					<h2 class="section-search__title_one">Your choice:</h2>
-					<h4 class="section-search__title_two">Films</h4>
-					<input
-						class="section-search__input_switch"
-						type="checkbox"
-						id="switch"
-					/><label class="section-search__label" for="switch">Toggle</label>
-					<h4 class="section-search__title_three">Series</h4>
-					<div class="section-search__select_search_one">
-						<select name="country" id="country_select" class="dropbtn">
-							<option value="">Country</option>
-							<option value="Австралия">Avstraliya</option>
-							<option value="Албания">Albaniya</option>
-							<option value="Азербайджан">Azerbaydzhan</option>
-							<option value="Американские Виргинские острова">
-								Amerikanskie-Virginskie-ostrova
-							</option>
-							<option value="Аргентина">Argentina</option>
-							<option value="Беларусь">Belarus</option>
-							<option value="Бельгия">Belgiya</option>
-							<option value="Болгария">Bolgariya</option>
-							<option value="Великобритания">Velikobritaniya</option>
-							<option value="Венесуэла">Venesuela</option>
-							<option value="Вьетнам">Vetnam</option>
-							<option value="Германия">Germaniya</option>
-							<option value="Гонконг">Gonkong</option>
-							<option value="Греция">Greciya</option>
-							<option value="Дания">Daniya</option>
-							<option value="Доминика">Dominika</option>
-							<option value="Египет">Egipet</option>
-							<option value="Замбия">Zambiya</option>
-							<option value="Зимбабве">Zimbabve</option>
-							<option value="Израиль">Izrail</option>
-							<option value="Индия">Indiya</option>
-							<option value="Испания">Ispaniya</option>
-							<option value="Италия">Italiya</option>
-							<option value="Казахстан">Kazahstan</option>
-							<option value="Канада">Kanada</option>
-							<option value="Кыргызстан">Kyrgyzstan</option>
-							<option value="Китай">Kitay</option>
-							<option value="Корея">Koreya</option>
-							<option value="Латвия">Latviya</option>
-							<option value="Люксембург">Lyuksemburg</option>
-							<option value="Мексика">Meksika</option>
-							<option value="Монако">Monako</option>
-							<option value="Непал">Nepal</option>
-							<option value="Норвегия">Norvegiya</option>
-							<option value="Оман">Oman</option>
-							<option value="ОАЭ">OAE</option>
-							<option value="Перу">Peru</option>
-							<option value="Португалия">Portugaliya</option>
-							<option value="Румыния">Rumyniya</option>
-							<option value="США">SShA</option>
-							<option value="Сербия">Serbiya</option>
-							<option value="Таиланд">Tailand</option>
-							<option value="Турция">Turciya</option>
-							<option value="Эстония">Estoniya</option>
-							<option value="ЮАР">YuAR</option>
-							<option value="Ямайка">Yamayka</option>
-							<option value="Япония">Yaponiya</option>
-						</select>
-					</div>
-					<div class="section-search__select_search_two">
-						<select name="years" id="years-select" class="dropbtn">
-							<option value="">Years</option>
-							<option value="2023">2023</option>
-							<option value="2022">2022</option>
-							<option value="2021">2021</option>
-							<option value="2020">2020</option>
-							<option value="2019">2019</option>
-							<option value="2018">2018</option>
-							<option value="2017">2017</option>
-							<option value="2016">2016</option>
-							<option value="2015">2015</option>
-							<option value="2014">2014</option>
-							<option value="2013">2013</option>
-							<option value="2012">2012</option>
-							<option value="2011">2011</option>
-							<option value="2010">2010</option>
-							<option value="2009">2009</option>
-							<option value="2008">2008</option>
-							<option value="2007">2007</option>
-							<option value="2006">2006</option>
-							<option value="2005">2005</option>
-							<option value="2004">2004</option>
-							<option value="2003">2003</option>
-							<option value="2002">2002</option>
-							<option value="2001">2001</option>
-							<option value="2000">2000</option>
-							<option value="1999">1999</option>
-							<option value="1998">1998</option>
-							<option value="1997">1997</option>
-							<option value="1996">1996</option>
-							<option value="1995">1995</option>
-							<option value="1994">1994</option>
-							<option value="1993">1993</option>
-							<option value="1992">1992</option>
-							<option value="1991">1991</option>
-							<option value="1990">1990</option>
-						</select>
-					</div>
-					<div class="container-input">
-						<div class="container-input__column_one">
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="аниме"
-								id="anime"
-							/><label class="container-input__label_tag" for="tag"
-								>Anime</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="биография"
-								id="biografiya"
-							/><label class="container-input__label_tag" for="tag"
-								>Biography</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="боевик"
-								id="boevik"
-							/><label class="container-input__label_tag" for="tag"
-								>Action</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="детектив"
-								id="detektiv"
-							/><label class="container-input__label_tag" for="tag"
-								>Detektiv</label
-							>
-						</div>
-						<div class="container-input__column_two">
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="детский"
-								id="detskiy"
-							/><label class="container-input__label_tag" for="tag"
-								>Detskiy</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="драма"
-								id="drama"
-							/><label class="container-input__label_tag" for="tag"
-								>Drama</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="комедия"
-								id="komediya"
-							/><label class="container-input__label_tag" for="tag"
-								>Comedy</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="ужасы"
-								id="uzhasy"
-							/><label class="container-input__label_tag" for="tag"
-								>Horror</label
-							>
-						</div>
-						<div class="container-input__column_three">
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="фэнтези"
-								id="fentezi"
-							/><label class="container-input__label_tag" for="tag"
-								>Fantasy</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="триллер"
-								id="triller"
-							/><label class="container-input__label_tag" for="tag"
-								>Thriller</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="фантастика"
-								id="fantastika"
-							/><label class="container-input__label_tag" for="tag"
-								>Fantastika</label
-							>
-							<input
-								class="container-input__tag"
-								type="checkbox"
-								name="genre"
-								value="семейный"
-								id="semeynyy"
-							/><label class="container-input__label_tag" for="tag"
-								>Family</label
-							>
-						</div>
-					</div>
-					<button class="section-search__glow-on-hover" type="button">
-						Find
-					</button>
-				</section>
-				<!-- блок Арины конец -->
-        <!-- блок Юли начало -->
+    </header>
+    <!-- блок Cофии конец -->
+    <main class="main-content">
+      <!-- блок Арины начало -->
+      <section class="section-search">
+        <h2 class="section-search__title_one">Your choice:</h2>
+        <h4 class="section-search__title_two">Films</h4>
+        <input class="section-search__input_switch" type="checkbox" id="switch" /><label class="section-search__label"
+          for="switch">Toggle</label>
+        <h4 class="section-search__title_three">Series</h4>
+        <div class="section-search__select_search_one">
+          <select name="country" id="country_select" class="dropbtn">
+            <option value="">Country</option>
+            <option value="Австралия">Avstraliya</option>
+            <option value="Албания">Albaniya</option>
+            <option value="Азербайджан">Azerbaydzhan</option>
+            <option value="Американские Виргинские острова">
+              Amerikanskie-Virginskie-ostrova
+            </option>
+            <option value="Аргентина">Argentina</option>
+            <option value="Беларусь">Belarus</option>
+            <option value="Бельгия">Belgiya</option>
+            <option value="Болгария">Bolgariya</option>
+            <option value="Великобритания">Velikobritaniya</option>
+            <option value="Венесуэла">Venesuela</option>
+            <option value="Вьетнам">Vetnam</option>
+            <option value="Германия">Germaniya</option>
+            <option value="Гонконг">Gonkong</option>
+            <option value="Греция">Greciya</option>
+            <option value="Дания">Daniya</option>
+            <option value="Доминика">Dominika</option>
+            <option value="Египет">Egipet</option>
+            <option value="Замбия">Zambiya</option>
+            <option value="Зимбабве">Zimbabve</option>
+            <option value="Израиль">Izrail</option>
+            <option value="Индия">Indiya</option>
+            <option value="Испания">Ispaniya</option>
+            <option value="Италия">Italiya</option>
+            <option value="Казахстан">Kazahstan</option>
+            <option value="Канада">Kanada</option>
+            <option value="Кыргызстан">Kyrgyzstan</option>
+            <option value="Китай">Kitay</option>
+            <option value="Корея">Koreya</option>
+            <option value="Латвия">Latviya</option>
+            <option value="Люксембург">Lyuksemburg</option>
+            <option value="Мексика">Meksika</option>
+            <option value="Монако">Monako</option>
+            <option value="Непал">Nepal</option>
+            <option value="Норвегия">Norvegiya</option>
+            <option value="Оман">Oman</option>
+            <option value="ОАЭ">OAE</option>
+            <option value="Перу">Peru</option>
+            <option value="Португалия">Portugaliya</option>
+            <option value="Румыния">Rumyniya</option>
+            <option value="США">SShA</option>
+            <option value="Сербия">Serbiya</option>
+            <option value="Таиланд">Tailand</option>
+            <option value="Турция">Turciya</option>
+            <option value="Эстония">Estoniya</option>
+            <option value="ЮАР">YuAR</option>
+            <option value="Ямайка">Yamayka</option>
+            <option value="Япония">Yaponiya</option>
+          </select>
+        </div>
+        <div class="section-search__select_search_two">
+          <select name="years" id="years-select" class="dropbtn">
+            <option value="">Years</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+            <option value="1999">1999</option>
+            <option value="1998">1998</option>
+            <option value="1997">1997</option>
+            <option value="1996">1996</option>
+            <option value="1995">1995</option>
+            <option value="1994">1994</option>
+            <option value="1993">1993</option>
+            <option value="1992">1992</option>
+            <option value="1991">1991</option>
+            <option value="1990">1990</option>
+          </select>
+        </div>
+        <div class="container-input">
+          <div class="container-input__column_one">
+            <input class="container-input__tag" type="checkbox" name="genre" value="аниме" id="anime" /><label
+              class="container-input__label_tag" for="tag">Anime</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="биография" id="biografiya" /><label
+              class="container-input__label_tag" for="tag">Biography</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="боевик" id="boevik"
+              value="боевик" /><label class="container-input__label_tag" for="tag">Action</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="детектив" id="detektiv" /><label
+              class="container-input__label_tag" for="tag">Detektiv</label>
+          </div>
+          <div class="container-input__column_two">
+            <input class="container-input__tag" type="checkbox" name="genre" value="детский" id="detskiy" /><label
+              class="container-input__label_tag" for="tag">Detskiy</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="драма" id="drama" /><label
+              class="container-input__label_tag" for="tag">Drama</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="комедия" id="komediya" /><label
+              class="container-input__label_tag" for="tag">Comedy</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="ужасы" id="uzhasy" /><label
+              class="container-input__label_tag" for="tag">Horror</label>
+          </div>
+          <div class="container-input__column_three">
+            <input class="container-input__tag" type="checkbox" name="genre" value="фэнтези" id="fentezi" /><label
+              class="container-input__label_tag" for="tag">Fantasy</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="триллер" id="triller" /><label
+              class="container-input__label_tag" for="tag">Thriller</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="фантастика" id="fantastika" /><label
+              class="container-input__label_tag" for="tag">Fantastika</label>
+            <input class="container-input__tag" type="checkbox" name="genre" value="семейный" id="semeynyy" /><label
+              class="container-input__label_tag" for="tag">Family</label>
+          </div>
+        </div>
+        <button class="section-search__glow-on-hover" type="button">
+          Find
+        </button>
+      </section>
+      <!-- блок Арины конец -->
+      <!-- блок Юли начало -->
       <section class="search-results">
         <h2 class="search-results__title">What did we find:</h2>
         <div class="search-results__conteiner-one">
