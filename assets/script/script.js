@@ -107,6 +107,7 @@ myModal.addEventListener('click', event => {
 
 
 const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
+const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
   const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
@@ -127,60 +128,70 @@ const fetchMoviesByName = async (query, page = 1, limit = 10) => {
 //console.log(movies); // Выводит список фильмов --movies is not defined
 
 //КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
-
+function getClassByRate(vote) {
+    if (vote >= 7) {
+      return "green";
+    } else if (vote > 5) {
+      return "orange";
+    } else {
+      return "red";
+    }
+  }
 //НАЧАЛО ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
-// function showMovies(data) {
-//     const moviesEl = document.querySelector(".movies");
+function showMovies(data) {
+    const moviesEl = document.querySelector(".search-results");
   
-//     // Очищаем предыдущие фильмы
-//     document.querySelector(".movies").innerHTML = "";
+    // Очищаем предыдущие фильмы
+    moviesEl.innerHTML = "";
   
-//     data.films.forEach((movie) => {
-//       const movieEl = document.createElement("div");
-//       movieEl.classList.add("movie");
-//       movieEl.innerHTML = `
-//           <div class="movie__cover-inner">
-//           <img
-//             src="${movie.posterUrlPreview}"
-//             class="movie__cover"
-//             alt="${movie.nameRu}"
-//           />
-//           <div class="movie__cover--darkened"></div>
-//         </div>
-//         <div class="movie__info">
-//           <div class="movie__title">${movie.nameRu}</div>
-//           <div class="movie__category">${movie.genres.map(
-//             (genre) => ` ${genre.genre}`
-//           )}</div>
-//           ${
-//             movie.rating &&
-//             `
-//           <div class="movie__average movie__average--${getClassByRate(
-//             movie.rating
-//           )}">${movie.rating}</div>
-//           `
-//           }
-//         </div>
-//           `;
-//       moviesEl.appendChild(movieEl);
-//     });
-//   }
+    data.films.forEach((movie) => {
+      const movieEl = document.createElement("div");
+      movieEl.classList.add("movie");
+      movieEl.innerHTML = `
+          <div class="movie__cover-inner">
+          <img
+            src="${movie.posterUrlPreview}"
+            class="movie__cover"
+            alt="${movie.nameRu}"
+          />
+          <div class="movie__cover--darkened"></div>
+        </div>
+        <div class="movie__info">
+          <div class="movie__title">${movie.nameRu}</div>
+          <div class="movie__category">${movie.genres.map(
+            (genre) => ` ${genre.genre}`
+          )}</div>
+          ${
+            movie.rating &&
+            `
+          <div class="movie__average movie__average--${getClassByRate(
+            movie.rating
+          )}">${movie.rating}</div>
+          `
+          }
+        </div>
+          `;
+      moviesEl.appendChild(movieEl);
+    });
+  }
   
-//   const form = document.querySelector("form");
-//   const search = document.querySelector(".header__search");
+    const form = document.querySelector(".search_movie");
+  const search = document.querySelector(".inputHeader");
   
-//   form.addEventListener("submit", (e) => {
-//     e.preventDefault();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
   
-//     const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
-//     if (search.value) {
-//       getMovies(apiSearchUrl);
+    const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
+    if (search.value) {
+      showMovies(apiSearchUrl);
   
-//       search.value = "";
-//     }
-//   });
+      search.value = "";
+    }
+  });
 //КОНЕЦ ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+//БУРГЕР МЕНЮ НАЧАЛО
 
+//БУРГЕР МЕНЮ КОНЕЦ
 
 
 
