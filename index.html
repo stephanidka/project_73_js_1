@@ -25,15 +25,50 @@
 					<input type="text" class="inputHeader" placeholder="Search" />
 				</div>
 				<ul class="sectors">
-					<div>
-						<li class="allFilms"><a href="#">All films</a></li>
+				<div>
+					<li class="allFilms"><a href="#">All films</a></li>
+				</div>
+				<div>
+					<li class="contactUs"><a href="#">Contact us</a></li>
+				</div>
+				<div>
+					<button class="open_modal login">Login</button>
+				<div class="modal" id="my-modal">
+				<div class="modal__box">
+				<button class="modal__close-btn" id="close-my-modal-btn">
+				<svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+						fill="#333333" />
+					<path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
+				</svg>
+				</button>
+				<div id="container">
+					<h1>Registration</h1>
+					<div class="name">
+						<input type="text" class="input_form" id="name_input" placeholder="Name" minlength="2" maxlength="20" required>
+					</div>
+					<div class="email">
+						<input type="email" class="input_form" id="email_input" placeholder="E-mail" required>
+					</div>
+					<div class="age">
+						<input type="number" class="input_form" min ="0" id="age_input" placeholder="Your age" required>
+					</div>
+					<div class="password">
+						<input type="password" class="input_form" id="password_input" placeholder="Password" required>
+					</div>
+					<div class="repeat">
+						<input type="password" class="input_form" id="repeat_input" placeholder="Repeat password" required>
+					</div>
+					<div class="agree">
+						<input type="checkbox" class="radio-styles" id="checkbox_input"> I agree all of this stuff
 					</div>
 					<div>
-						<li class="contactUs"><a href="#">Contact us</a></li>
+						<button id="validate" required>Submit</button>
 					</div>
-					<div>
-						<li class="login"><a href="#">Login</a></li>
-					</div>
+				</div>
+				</div>
+				</div>
+				</div>
 				</ul>
 			</header>
 			<!-- блок Cофии конец -->
@@ -250,24 +285,16 @@
 					</button>
 				</section>
 				<!-- блок Арины конец -->
-			   <!-- блок Юли начало -->
-			   <section class="search-results">
+			  <!-- блок Юли начало -->
+			  <section class="search-results">
 				<h2 class="search-results__title">What did we find:</h2>
 				<div class="search-results__conteiner-one">
-				  <div class="search-results__img-one">
-					<img class="image" src="https://cs14.pikabu.ru/post_img/big/2023/07/13/9/1689257537191585917.jpg" alt="" />
-				  </div>
-				  <p class="search-results__par-one">
-					bla bla bal bla bla bla bla bal bla bl
-				  </p>
+				  <div class="search-results__img-one"></div>
+				  <p class="search-results__par-one"></p>
 				</div>
 				<div class="search-results__conteiner-two">
-				  <div class="search-results__img-two">
-					<img class="image" src="https://cs14.pikabu.ru/post_img/big/2023/07/13/9/1689257537191585917.jpg" alt="" />
-				  </div>
-				  <p class="search-results__par-two">
-					bla bla bal bla bla bla bla bal bla bl
-				  </p>
+				  <div class="search-results__img-two"></div>
+				  <p class="search-results__par-two"></p>
 				</div>
 			  </section>
 			  <!-- блок Юли конец -->
@@ -279,15 +306,15 @@
 					  </div>
 					  <div class="title_subscribed">my film list</div>
 					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
+						<input class="check_movie" type="checkbox" disabled/>
 						5-th Element
 					  </div>
 					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
+						<input class="check_movie" type="checkbox" disabled/>
 						Addams Family
 					  </div>
 					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
+						<input class="check_movie" type="checkbox" disabled/>
 						Snatch
 					  </div>
 					</div>

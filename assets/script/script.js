@@ -1,34 +1,130 @@
-const findButton = document.querySelector(".findButton");
+"use strict"
+// валидация модального окна регистрации 
+const nameInput = document.getElementById('name_input');
+const emailInput = document.getElementById('email_input');
+const ageInput = document.getElementById('age_input');
+const passwordInput = document.getElementById('password_input');
+const repeatInput = document.getElementById('repeat_input');
+const checkboxInput = document.getElementById('checkbox_input')
+const validateButton = document.getElementById("validate");
 
-function getObj() {
-	const token = "0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3";
-	let movieTitle = "Пятый элемент";
-	return fetch(
-		`https://api.kinopoisk.dev/v1.4/movie/search?keyword=${encodeURIComponent(
-			movieTitle
-		)}`,
-		{
-			headers: {
-				"X-API-KEY": token,
-				"Content-Type": "application/json",
-			},
-		}
-	)
-		.then((response) => {
-			if (!response.ok) {
-				throw new Error("Network response was not ok");
-			}
-			return response.json();
-		})
-		.then((data) => {
-			console.log(data);
-		})
-		.catch((error) => {
-			console.error("There was a problem with your fetch operation:", error);
-		});
-}
+function submitModal(){
+    let nameValue = nameInput.value;
+    if (nameValue.length < 2) { 
+        passwordInput.value = "";
+        repeatInput.value = "";
+        alert("Enter your name please, at least 2 characters");
+        return;
+    } else {
+    
+    };
+    let emailValue = emailInput.value;
+    const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (regexpEmail.test(emailValue)) {
+        console.log('it works :)')
+    } else {
+        passwordInput.value = "";
+        repeatInput.value = "";
+        alert("Enter a valid e-mail please");
+        return;
+    };
+    let ageValue = ageInput.value;
+    if (ageValue.length === 0) {
+        passwordInput.value = "";
+        repeatInput.value = "";
+        alert("Enter your age please");
+    return;
+    }
+    let passwordValue = passwordInput.value;
+    let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    if (!regexpPassword.test(passwordValue)) {
+        console.log('it works too');
+        repeatInput.value = "";
+        alert("Enter your password please");
+        return;
+    } 
+    else {   
+    };
+    
+    let repeatValue = repeatInput.value;
+    if (repeatValue.length === 0) {
+        alert("Repeat your password please");
+        return;
+    }
+    else {
+    };
 
-document.querySelector(".findButton").addEventListener("click", getObj);
+    if(!checkboxInput.checked){
+        alert("Please accept the terms and conditions")
+        return;
+    }
+
+    if (passwordValue === repeatValue){
+        alert("Welcome!");
+    }
+    else {
+        alert("Password mismatch");
+    };
+};
+validateButton.addEventListener('click', submitModal);
+    
+// модальное окно 
+const myModal = document.getElementById("my-modal"),
+    openModal = document.querySelector(".open_modal");
+
+openModal.addEventListener("click", function() {
+    myModal.classList.add("open");
+})
+// Закрыть модальное окно
+document.getElementById("close-my-modal-btn").addEventListener("click", function() {
+    myModal.classList.remove("open");
+})
+// Закрыть модальное окно при нажатии на Esc
+window.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        myModal.classList.remove("open");
+    }
+});
+// Закрыть модальное окно при клике вне его
+document.querySelector("#my-modal .modal__box").addEventListener('click', event => {
+    event._isClickWithInModal = true;
+});
+myModal.addEventListener('click', event => {
+    if (event._isClickWithInModal) return;
+    event.currentTarget.classList.remove('open');
+});
+
+// const findButton = document.querySelector(".findButton");
+
+// function getObj() {
+// 	const token = "0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3";
+// 	let movieTitle = "Пятый элемент";
+// 	return fetch(
+// 		`https://api.kinopoisk.dev/v1.4/movie/search?keyword=${encodeURIComponent(
+// 			movieTitle
+// 		)}`,
+// 		{
+// 			headers: {
+// 				"X-API-KEY": token,
+// 				"Content-Type": "application/json",
+// 			},
+// 		}
+// 	)
+// 		.then((response) => {
+// 			if (!response.ok) {
+// 				throw new Error("Network response was not ok");
+// 			}
+// 			return response.json();
+// 		})
+// 		.then((data) => {
+// 			console.log(data);
+// 		})
+// 		.catch((error) => {
+// 			console.error("There was a problem with your fetch operation:", error);
+// 		});
+// }
+
+// document.querySelector(".findButton").addEventListener("click", getObj);
 
 // import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client';
 // const kp = new KinopoiskDev('0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3');
