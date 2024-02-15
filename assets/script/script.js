@@ -75,11 +75,9 @@ document.getElementById('validate').addEventListener('click', function () {
     checkMovie.forEach((elem) => {
         elem.removeAttribute('disabled');
     });
-};
+});
 validateButton.addEventListener('click', submitModal);
 
-    
-})
 
 // модальное окно 
 const myModal = document.getElementById("my-modal"),
