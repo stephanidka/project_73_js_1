@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="./assets/images/video-camera.png" type="image/png" />
-		<link rel="stylesheet" href="./assets/style/style.css" />
-		<title>Something to watch</title>
-	</head>
-
-	<body>
-		<div class="grid-container">
-			<!-- блок Софии начало -->
-			<header id="header">
-				<div class="title">Something to WATCH</div>
-				<div class="search">
-					<button>
-						<img
-							src="assets/icons/search_licon 1.png"
-							alt="search"
-							class="img"
-						/>
-					</button>
-					<input type="text" class="inputHeader" placeholder="Search" />
-				</div>
-				<ul class="sectors">
-					<div>
-						<li class="allFilms"><a href="#">All films</a></li>
-					</div>
-					<div>
-						<li class="contactUs"><a href="#">Contact us</a></li>
-					</div>
-					<div>
-						<li class="login"><a href="#">Login</a></li>
-					</div>
-				</ul>
-			</header>
-			<!-- блок Cофии конец -->
-			<main class="main-content">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./assets/images/video-camera.png" type="image/png" />
+    <link rel="stylesheet" href="./assets/style/style.css" />
+    <title>Something to watch</title>
+  </head>
+  <body>
+    <div class="grid-container">
+      <!-- блок Софии начало -->
+      <header id="header">
+        <div class="title">Something to WATCH</div>
+        <div class="search">
+          <button>
+            <img
+              src="assets/icons/search_licon 1.png"
+              alt="search"
+              class="img"
+            />
+          </button>
+          <input type="text" class="inputHeader" placeholder="Search" />
+        </div>
+        <div>
+          <li class="contactUs"><a href="#">Contact us</a></li>
+        </div>
+        <div>
+          <button class="open_modal login">Login</button>
+          <div class="modal" id="my-modal">
+            <div class="modal__box">
+              <button class="modal__close-btn" id="close-my-modal-btn">
+                <svg width="23" height="25" viewBox="0 0 23 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.09082 0.03125L22.9999 22.0294L20.909 24.2292L-8.73579e-05 2.23106L2.09082 0.03125Z"
+                    fill="#333333" />
+                  <path d="M0 22.0295L20.9091 0.0314368L23 2.23125L2.09091 24.2294L0 22.0295Z" fill="#333333" />
+                </svg>
+              </button>
+              <div id="container">
+                <h1>Registration</h1>
+                <div class="name">
+                  <input type="text" class="input_form" id="name_input" placeholder="Name" minlength="2" maxlength="20"
+                    required />
+                </div>
+                <div class="email">
+                  <input type="email" class="input_form" id="email_input" placeholder="E-mail" required />
+                </div>
+                <div class="age">
+                  <input type="number" class="input_form" min="0" id="age_input" placeholder="Your age" required />
+                </div>
+                <div class="password">
+                  <input type="password" class="input_form" id="password_input" placeholder="Password" required />
+                </div>
+                <div class="repeat">
+                  <input type="password" class="input_form" id="repeat_input" placeholder="Repeat password" required />
+                </div>
+                <div class="agree">
+                  <input type="checkbox" class="radio-styles" id="checkbox_input" />
+                  I agree all of this stuff
+                </div>
+                <div>
+                  <button id="validate" required>Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+      </header>
+      <!-- блок Cофии конец -->
+      <main class="main-content">
 				<!-- блок Арины начало -->
 				<section class="section-search">
 					<h2 class="section-search__title_one">Your choice:</h2>
@@ -51,55 +82,55 @@
 					<div class="section-search__select_search_one">
 						<select name="country" id="country_select" class="dropbtn">
 							<option value="">Country</option>
-							<option value="Avstraliya">Avstraliya</option>
-							<option value="Albaniya">Albaniya</option>
-							<option value="Azerbaydzhan">Azerbaydzhan</option>
-							<option value="Amerikanskie-Virginskie-ostrova">
+							<option value="Австралия">Avstraliya</option>
+							<option value="Албания">Albaniya</option>
+							<option value="Азербайджан">Azerbaydzhan</option>
+							<option value="Американские Виргинские острова">
 								Amerikanskie-Virginskie-ostrova
 							</option>
-							<option value="Argentina">Argentina</option>
-							<option value="Belarus">беларусь</option>
-							<option value="Belgiya">Belgiya</option>
-							<option value="Bolgariya">Bolgariya</option>
-							<option value="Velikobritaniya">Velikobritaniya</option>
-							<option value="Venesuela">Venesuela</option>
-							<option value="Vetnam">Vetnam</option>
-							<option value="Germaniya">Germaniya</option>
-							<option value="Gonkong">Gonkong</option>
-							<option value="Greciya">Greciya</option>
-							<option value="Daniya">Daniya</option>
-							<option value="Dominika">Dominika</option>
-							<option value="Egipet">Egipet</option>
-							<option value="Zambiya">Zambiya</option>
-							<option value="Zimbabve">Zimbabve</option>
-							<option value="Izrail">Izrail</option>
-							<option value="Indiya">Indiya</option>
-							<option value="Ispaniya">Ispaniya</option>
-							<option value="Italiya">Italiya</option>
-							<option value="Kazahstan">Kazahstan</option>
-							<option value="Kanada">Kanada</option>
-							<option value="Kyrgyzstan">Kyrgyzstan</option>
-							<option value="Kitay">Kitay</option>
-							<option value="Koreya">Koreya</option>
-							<option value="Latviya">Latviya</option>
-							<option value="Lyuksemburg">Lyuksemburg</option>
-							<option value="Meksika">Meksika</option>
-							<option value="Monako">Monako</option>
-							<option value="Nepal">Nepal</option>
-							<option value="Norvegiya">Norvegiya</option>
-							<option value="Oman">Oman</option>
-							<option value="OAE">OAE</option>
-							<option value="Peru">Peru</option>
-							<option value="Portugaliya">Portugaliya</option>
-							<option value="Rumyniya">Rumyniya</option>
-							<option value="Россия">Россия</option>
-							<option value="Serbiya">Serbiya</option>
-							<option value="Tailand">Tailand</option>
-							<option value="Turciya">Turciya</option>
-							<option value="Estoniya">Estoniya</option>
-							<option value="YuAR">YuAR</option>
-							<option value="Yamayka">Yamayka</option>
-							<option value="Yaponiya">Yaponiya</option>
+							<option value="Аргентина">Argentina</option>
+							<option value="Беларусь">Belarus</option>
+							<option value="Бельгия">Belgiya</option>
+							<option value="Болгария">Bolgariya</option>
+							<option value="Великобритания">Velikobritaniya</option>
+							<option value="Венесуэла">Venesuela</option>
+							<option value="Вьетнам">Vetnam</option>
+							<option value="Германия">Germaniya</option>
+							<option value="Гонконг">Gonkong</option>
+							<option value="Греция">Greciya</option>
+							<option value="Дания">Daniya</option>
+							<option value="Доминика">Dominika</option>
+							<option value="Египет">Egipet</option>
+							<option value="Замбия">Zambiya</option>
+							<option value="Зимбабве">Zimbabve</option>
+							<option value="Израиль">Izrail</option>
+							<option value="Индия">Indiya</option>
+							<option value="Испания">Ispaniya</option>
+							<option value="Италия">Italiya</option>
+							<option value="Казахстан">Kazahstan</option>
+							<option value="Канада">Kanada</option>
+							<option value="Кыргызстан">Kyrgyzstan</option>
+							<option value="Китай">Kitay</option>
+							<option value="Корея">Koreya</option>
+							<option value="Латвия">Latviya</option>
+							<option value="Люксембург">Lyuksemburg</option>
+							<option value="Мексика">Meksika</option>
+							<option value="Монако">Monako</option>
+							<option value="Непал">Nepal</option>
+							<option value="Норвегия">Norvegiya</option>
+							<option value="Оман">Oman</option>
+							<option value="ОАЭ">OAE</option>
+							<option value="Перу">Peru</option>
+							<option value="Португалия">Portugaliya</option>
+							<option value="Румыния">Rumyniya</option>
+							<option value="США">SShA</option>
+							<option value="Сербия">Serbiya</option>
+							<option value="Таиланд">Tailand</option>
+							<option value="Турция">Turciya</option>
+							<option value="Эстония">Estoniya</option>
+							<option value="ЮАР">YuAR</option>
+							<option value="Ямайка">Yamayka</option>
+							<option value="Япония">Yaponiya</option>
 						</select>
 					</div>
 					<div class="section-search__select_search_two">
@@ -146,7 +177,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="anime"
+								name="genre"
+								value="аниме"
 								id="anime"
 							/><label class="container-input__label_tag" for="tag"
 								>Anime</label
@@ -154,7 +186,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="biografiya"
+								name="genre"
+								value="биография"
 								id="biografiya"
 							/><label class="container-input__label_tag" for="tag"
 								>Biography</label
@@ -163,15 +196,17 @@
 								class="container-input__tag"
 								type="checkbox"
 								name="genre"
+								value="боевик"
 								id="boevik"
                 value="боевик"
 							/><label class="container-input__label_tag" for="tag"
-								>боевик</label
+								>Action</label
 							>
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="detektiv"
+								name="genre"
+								value="детектив"
 								id="detektiv"
 							/><label class="container-input__label_tag" for="tag"
 								>Detektiv</label
@@ -181,7 +216,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="detskiy"
+								name="genre"
+								value="детский"
 								id="detskiy"
 							/><label class="container-input__label_tag" for="tag"
 								>Detskiy</label
@@ -189,7 +225,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="drama"
+								name="genre"
+								value="драма"
 								id="drama"
 							/><label class="container-input__label_tag" for="tag"
 								>Drama</label
@@ -197,7 +234,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="komediya"
+								name="genre"
+								value="комедия"
 								id="komediya"
 							/><label class="container-input__label_tag" for="tag"
 								>Comedy</label
@@ -205,7 +243,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="uzhasy"
+								name="genre"
+								value="ужасы"
 								id="uzhasy"
 							/><label class="container-input__label_tag" for="tag"
 								>Horror</label
@@ -215,7 +254,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="fentezi"
+								name="genre"
+								value="фэнтези"
 								id="fentezi"
 							/><label class="container-input__label_tag" for="tag"
 								>Fantasy</label
@@ -223,7 +263,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="triller"
+								name="genre"
+								value="триллер"
 								id="triller"
 							/><label class="container-input__label_tag" for="tag"
 								>Thriller</label
@@ -231,7 +272,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="fantastika"
+								name="genre"
+								value="фантастика"
 								id="fantastika"
 							/><label class="container-input__label_tag" for="tag"
 								>Fantastika</label
@@ -239,7 +281,8 @@
 							<input
 								class="container-input__tag"
 								type="checkbox"
-								name="semeynyy"
+								name="genre"
+								value="семейный"
 								id="semeynyy"
 							/><label class="container-input__label_tag" for="tag"
 								>Family</label
@@ -251,51 +294,40 @@
 					</button>
 				</section>
 				<!-- блок Арины конец -->
-			  <!-- блок Юли начало -->
-			  <section class="search-results">
-				<h2 class="search-results__title">What did we find:</h2>
-				<div class="search-results__conteiner-one">
-				  <div class="search-results__img-one">
-					<img class="image" src="https://cs14.pikabu.ru/post_img/big/2023/07/13/9/1689257537191585917.jpg" alt="" />
-				  </div>
-				  <p class="search-results__par-one">
-					bla bla bal bla bla bla bla bal bla bl
-				  </p>
-				</div>
-				<div class="search-results__conteiner-two">
-				  <div class="search-results__img-two">
-					<img class="image" src="https://cs14.pikabu.ru/post_img/big/2023/07/13/9/1689257537191585917.jpg" alt="" />
-				  </div>
-				  <p class="search-results__par-two">
-					bla bla bal bla bla bla bla bal bla bl
-				  </p>
-				</div>
-			  </section>
-			  <!-- блок Юли конец -->
-			    <!-- блок Степаниды начало -->
-				<div class="right_side">
-					<div class="filmlist">
-					  <div class="filmlist_title">
-						Wanna watch:
-					  </div>
-					  <div class="title_subscribed">my film list</div>
-					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
-						5-th Element
-					  </div>
-					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
-						Addams Family
-					  </div>
-					  <div class="film_list-movie">
-						<input class="check_movie" type="checkbox" />
-						Snatch
-					  </div>
-					</div>
-				  </div>
-				</main>
-				<!-- блок Степаниды конец -->
-
+        <!-- блок Юли начало -->
+      <section class="search-results">
+        <h2 class="search-results__title">What did we find:</h2>
+        <div class="search-results__conteiner-one">
+          <div class="search-results__img-one"></div>
+          <p class="search-results__par-one"></p>
+        </div>
+        <div class="search-results__conteiner-two">
+          <div class="search-results__img-two"></div>
+          <p class="search-results__par-two"></p>
+        </div>
+      </section>
+      <!-- блок Юли конец -->
+      <!-- блок Степаниды начало -->
+      <div class="right_side">
+        <div class="filmlist">
+          <div class="filmlist_title">Wanna watch:</div>
+          <div class="title_subscribed">my film list</div>
+          <div class="film_list-movie">
+            <input class="check_movie" type="checkbox" disabled />
+            5-th Element
+          </div>
+          <div class="film_list-movie">
+            <input class="check_movie" type="checkbox" disabled />
+            Addams Family
+          </div>
+          <div class="film_list-movie">
+            <input class="check_movie" type="checkbox" disabled />
+            Snatch
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- блок Степаниды конец -->
     <!-- Lena -->
     <footer class="footer">
       <div class="footer_wrapper">
@@ -332,26 +364,13 @@
           </svg>
         </div>
         <div class="message"></div>
-        <!-- <a class="footer__button-up" href="#" title="page up">
-          <svg class="footer__icon-up">
-            <use xlink:href="#arrow-up-short"></use>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-            <symbol id="arrow-up-short" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z" />
-            </symbol>
-          </svg>
-        </a> -->
-
       </div>
 
       </footer>
   <!-- Lena -->
     </div> <!-- это див грид-контейнера, не трогайте его :) -->
   
-  <script src="assets/script/script.js"></script> <!-- type="module" нужет чтобы библиотека подключилась -->
+  <script src="assets/script/script.js"></script>
 </body>
-
 
 </html>
