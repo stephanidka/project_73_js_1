@@ -106,58 +106,53 @@ myModal.addEventListener('click', event => {
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
 
+
 const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
-const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}';
+const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
-  const headers = {
+  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
+  const headers = new Headers({
     accept: "application/json",
     "X-API-KEY": API_KEY,
-  };
+  });
 
   const response = await fetch(url, { headers });
   const data = await response.json();
 
   return data;
 };
-
-// Пример использования
-// const movies = await fetchMoviesByName("avatar"); // тут await без async
-
-//console.log(movies); // Выводит список фильмов --movies is not defined
-
-//КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
 function getClassByRate(vote) {
-    if (vote >= 7) {
-      return "green";
-    } else if (vote > 5) {
-      return "orange";
-    } else {
-      return "red";
-    }
+  if (vote >= 7) {
+    return "green";
+  } else if (vote > 5) {
+    return "orange";
+  } else {
+    return "red";
   }
-//НАЧАЛО ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+}
+
 function showMovies(data) {
-    const moviesEl = document.querySelector(".search-results");
-  
-    // Очищаем предыдущие фильмы
-    moviesEl.innerHTML = "";
-  
-    data.films.forEach((movie) => {
+  const moviesEl = document.querySelector(".search-results");
+
+  moviesEl.innerHTML = "";
+
+  if (data.docs && data.docs.length > 0) {
+    data.docs.forEach((movie) => {
       const movieEl = document.createElement("div");
       movieEl.classList.add("movie");
+      console.log("Poster URL:", movie.previewUrl);
       movieEl.innerHTML = `
-          <div class="movie__cover-inner">
+        <div class="movie__cover-inner">
           <img
-            src="${movie.posterUrlPreview}"
+            src="${movie.previewUrl}"
             class="movie__cover"
-            alt="${movie.nameRu}"
+            alt="${movie.name}"
           />
           <div class="movie__cover--darkened"></div>
         </div>
         <div class="movie__info">
-          <div class="movie__title">${movie.nameRu}</div>
+          <div class="movie__title">${movie.name}</div>
           <div class="movie__category">${movie.genres.map(
             (genre) => ` ${genre.genre}`
           )}</div>
@@ -170,38 +165,96 @@ function showMovies(data) {
           `
           }
         </div>
-          `;
+      `;
       moviesEl.appendChild(movieEl);
     });
+  } else {
+    console.error("No films data found");
+    console.log("API Response:", data);
   }
+}
+
+
+
+
+const form = document.querySelector(".search_movie");
+const search = document.querySelector(".inputHeader");
+
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Remove the additional query parameters from apiSearchUrl
+  const apiSearchUrl = `${API_URL_SEARCH}&query=${search.value}`;
   
-    const form = document.querySelector(".search_movie");
-  const search = document.querySelector(".inputHeader");
-  
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-  
-    const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
-    if (search.value) {
-      showMovies(apiSearchUrl);
-  
-      search.value = "";
-    }
-  });
-//КОНЕЦ ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+  if (search.value) {
+    const moviesData = await fetchMoviesByName(search.value);
+
+    // Log the entire API response to the console
+    console.log("API Response:", moviesData);
+
+    showMovies(moviesData);
+    // Remove this line as it is unnecessary and causes an error
+    // fetchMoviesByName(apiSearchUrl);
+
+    search.value = "";
+  }
+});
+
+
+//ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+
+
 //БУРГЕР МЕНЮ НАЧАЛО
+const hamb = document.querySelector("#hamb");
+const popup = document.querySelector("#popup");
+const body = document.body;
+
+
+const menu = document.querySelector("#menu").cloneNode(1);
+
+
+hamb.addEventListener("click", hambHandler);
+
+
+function hambHandler(e) {
+  e.preventDefault();
+  
+  popup.classList.toggle("open");
+  hamb.classList.toggle("active");
+  body.classList.toggle("noscroll");
+  renderPopup();
+}
+
+
+function renderPopup() {
+  popup.appendChild(menu);
+}
+
+
+const links = Array.from(menu.children);
+
+
+links.forEach((link) => {
+  link.addEventListener("click", closeOnClick);
+});
+
+
+function closeOnClick() {
+  popup.classList.remove("open");
+  hamb.classList.remove("active");
+  body.classList.remove("noscroll");
+}
 
 //БУРГЕР МЕНЮ КОНЕЦ
 
 
-
-
-
-
-// const findButton = document.querySelector(".findButton");
-
-
+//Конец части Софии
 //КОНЕЦ ПОИСКА
+
+
+
+
 
 // ЭТО ПОИСК ПО ПАРАМЕТРАМ,  
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 

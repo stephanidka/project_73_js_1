@@ -14,13 +14,6 @@
       <header id="header">
         <div class="title">Something to WATCH</div>
         <div class="search">
-          <button>
-            <img
-              src="assets/icons/search_licon 1.png"
-              alt="search"
-              class="img"
-            />
-          </button>
           <form class="search_movie">
             <input type="text" class="inputHeader" placeholder="Search" />
           </form>
@@ -28,6 +21,9 @@
         <div>
           <li class="contactUs"><a href="#">Contact us</a></li>
         </div>
+		<div>
+			<li class="allFilms">All Films</li>
+		  </div>
         <div>
           <button class="open_modal login">Login</button>
           <div class="modal" id="my-modal">
@@ -68,6 +64,28 @@
             </div>
           </div>
         </ul>
+		<!-- блок меню на маленький экра НАЧАЛО-->
+        <div class="forSmall">
+			<nav class="navbar">
+			  <div class="container">
+				<div class="navbar__wrap">
+				  <div class="hamb">
+					<div class="hamb__field" id="hamb">
+					  <span class="bar"></span> <span class="bar"></span>
+					  <span class="bar"></span>
+					</div>
+				  </div>
+				  <ul class="menu" id="menu">
+					<li><a href="#">All films</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Login</a></li>
+				  </ul>
+				</div>
+			  </div>
+			</nav>
+			<div class="popup" id="popup"></div>
+		  </div>
+		  <!-- блок меню на маленький экран КОНЕЦ-->
       </header>
       <!-- блок Cофии конец -->
       <main class="main-content">
