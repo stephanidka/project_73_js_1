@@ -1,3 +1,6 @@
+const fileName = 'search_licon 1.png';
+const encodedFileName = encodeURIComponent(fileName);
+const url = `http://127.0.0.1:5500/assets/icons/${encodedFileName}`; // эта фигня убирает какие-то лишние пробелы
 "use strict"
 // валидация модального окна регистрации 
 const nameInput = document.getElementById('name_input');
@@ -103,163 +106,204 @@ myModal.addEventListener('click', event => {
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
 
+
 const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
+const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;//в query попадает запрос поиска
-  const headers = {
+  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
+  const headers = new Headers({
     accept: "application/json",
     "X-API-KEY": API_KEY,
-  };
+  });
 
   const response = await fetch(url, { headers });
   const data = await response.json();
 
   return data;
 };
-
-// Пример использования
-const movies = await fetchMoviesByName("avatar");
-
-console.log(movies); // Выводит список фильмов
-
-//КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
-// const findButton = document.querySelector(".findButton");
-
-// function getObj() {
-// 	const token = "0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3";
-// 	let movieTitle = "Пятый элемент";
-// 	return fetch(
-// 		`https://api.kinopoisk.dev/v1.4/movie/search?keyword=${encodeURIComponent(
-// 			movieTitle
-// 		)}`,
-// 		{
-// 			headers: {
-// 				"X-API-KEY": token,
-// 				"Content-Type": "application/json",
-// 			},
-// 		}
-// 	)
-// 		.then((response) => {
-// 			if (!response.ok) {
-// 				throw new Error("Network response was not ok");
-// 			}
-// 			return response.json();
-// 		})
-// 		.then((data) => {
-// 			console.log(data);
-// 		})
-// 		.catch((error) => {
-// 			console.error("There was a problem with your fetch operation:", error);
-// 		});
-// }
-
-// document.querySelector(".findButton").addEventListener("click", getObj);
-
-// import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client';
-// const kp = new KinopoiskDev('0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3');
-// const {data} = await kp.movie.getById(666);
-// console.log(data); //это для подключения библиотеки
-
-/* РАСКОММЕНТИРОВАТЬ!!!!
-const findButton = document.querySelector(".findButton") 
-const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
-const headers = {
-    "X-API-KEY": token
-};
-// вот это код из документации
-async function getMoviesByName(name, page = 1, limit = 1) {
-    try {
-    const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
-        "query": name,
-        "limit": limit,
-        "page": page,
-    }), {
-        headers: headers
-    });
-
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const movies = await response.json();
-    return movies.docs;
-
-    } catch (error) {
-    console.error(error);
-    }
+function getClassByRate(vote) {
+  if (vote >= 7) {
+    return "green";
+  } else if (vote > 5) {
+    return "orange";
+  } else {
+    return "red";
+  }
 }
 
-getMoviesByName("аватар путь воды").then(movies => {
-    console.log(movies);
+function showMovies(data) {
+  const moviesEl = document.querySelector(".search-results");
+
+  moviesEl.innerHTML = "";
+
+  if (data.docs && data.docs.length > 0) {
+    data.docs.forEach((movie) => {
+      const movieEl = document.createElement("div");
+      movieEl.classList.add("movie");
+      console.log("Poster URL:", movie.previewUrl);
+      movieEl.innerHTML = `
+        <div class="movie__cover-inner">
+          <img
+            src="${movie.previewUrl}"
+            class="movie__cover"
+            alt="${movie.name}"
+          />
+          <div class="movie__cover--darkened"></div>
+        </div>
+        <div class="movie__info">
+          <div class="movie__title">${movie.name}</div>
+          <div class="movie__category">${movie.genres.map(
+            (genre) => ` ${genre.genre}`
+          )}</div>
+          ${
+            movie.rating &&
+            `
+          <div class="movie__average movie__average--${getClassByRate(
+            movie.rating
+          )}">${movie.rating}</div>
+          `
+          }
+        </div>
+      `;
+      moviesEl.appendChild(movieEl);
+    });
+  } else {
+    console.error("No films data found");
+    console.log("API Response:", data);
+  }
+}
+
+
+
+
+const form = document.querySelector(".search_movie");
+const search = document.querySelector(".inputHeader");
+
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Remove the additional query parameters from apiSearchUrl
+  const apiSearchUrl = `${API_URL_SEARCH}&query=${search.value}`;
+  
+  if (search.value) {
+    const moviesData = await fetchMoviesByName(search.value);
+
+    // Log the entire API response to the console
+    console.log("API Response:", moviesData);
+
+    showMovies(moviesData);
+    // Remove this line as it is unnecessary and causes an error
+    // fetchMoviesByName(apiSearchUrl);
+
+    search.value = "";
+  }
 });
- */
-
-// import { KinopoiskDev } from './node_modules/@openmoviedb/kinopoiskdev_client';
-// const kp = new KinopoiskDev('0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3');
-// const {data} = await kp.movie.getById(666);
-// console.log(data); //это для подключения библиотеки
-
-// const findButton = document.querySelector(".findButton") 
-// const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
-// const headers = {
-//     "X-API-KEY": token
-// };
-// вот это код из документации
-// async function getMoviesByName(name, page = 1, limit = 1) {
-//     try {
-//     const response = await fetch('https://api.kinopoisk.dev/v1.2/movie/search?' + new URLSearchParams({
-//         "query": name,
-//         "limit": limit,
-//         "page": page,
-//     }), {
-//         headers: headers
-//     });
-
-//     if (!response.ok) {
-//         throw new Error(`HTTP error! status: ${response.status}`);
-//     }
-
-//     const movies = await response.json();
-//     return movies.docs;
-
-//     } catch (error) {
-//     console.error(error);
-//     }
-// }
-
-// getMoviesByName("аватар путь воды").then(movies => {
-//     console.log(movies);
-// });
-
-//Это пусть будет пока)
-// function getObj(){
-//     const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
-//     let movieTitle = 'Пятый элемент';
-//     return fetch(`https://api.kinopoisk.dev/v1.4/movie/search?keyword=${encodeURIComponent(movieTitle)}`, {
-//         headers: {
-//             'X-API-KEY': token,
-//             'Content-Type': 'application/json',
-//         }
-//     })
-//     .then((response) => {
-//         if (!response.ok) {
-//             throw new Error('Network response was not ok');
-//         }
-//         return response.json();
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((error) => {
-//         console.error('There was a problem with your fetch operation:', error);
-//     });
-// }
-
-    // document.querySelector('.findButton').addEventListener('click', getMoviesByName);
 
 
+//ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+
+
+//БУРГЕР МЕНЮ НАЧАЛО
+const hamb = document.querySelector("#hamb");
+const popup = document.querySelector("#popup");
+const body = document.body;
+
+
+const menu = document.querySelector("#menu").cloneNode(1);
+
+
+hamb.addEventListener("click", hambHandler);
+
+
+function hambHandler(e) {
+  e.preventDefault();
+  
+  popup.classList.toggle("open");
+  hamb.classList.toggle("active");
+  body.classList.toggle("noscroll");
+  renderPopup();
+}
+
+
+function renderPopup() {
+  popup.appendChild(menu);
+}
+
+
+const links = Array.from(menu.children);
+
+
+links.forEach((link) => {
+  link.addEventListener("click", closeOnClick);
+});
+
+
+function closeOnClick() {
+  popup.classList.remove("open");
+  hamb.classList.remove("active");
+  body.classList.remove("noscroll");
+}
+
+//БУРГЕР МЕНЮ КОНЕЦ
+
+
+//Конец части Софии
 //КОНЕЦ ПОИСКА
+
+
+
+
+
+// ЭТО ПОИСК ПО ПАРАМЕТРАМ,  
+// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
+// и фильтр фильмы-сериалы
+const findButton = document.querySelector(".section-search__glow-on-hover");
+const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
+const fetchFiltrMovies = async (
+    year,
+    countrie,
+    genres,
+    page = 1,
+    limit = 10
+        ) => {
+    const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    const headers = {
+    accept: "application/json",
+    "X-API-KEY": token,
+    };
+    const response = await fetch(url, { headers });
+    const data = await response.json();
+    return data;
+};
+const fetchFilteredMovies = async () => {
+    const yearSelect = document.getElementById('years-select').value;
+    const countrySelect = document.getElementById('country_select').value;
+    const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
+
+    const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
+    console.log(res);
+
+    const movie = res.docs[0]; // это добавление картики в блок search-results
+    console.log(movie);
+    const postMovies = document.querySelector(".search-results");
+    const generateMovieHTML = (movie) => {
+        return `
+        <div class="post">
+        <img src="${movie.poster.url}" alt="${movie.name} Poster">
+            <p>${movie.name}</p>
+            <p>${movie.countries.map(country => country.name).join(', ')}</p>
+            <p>${movie.year}</p>
+        </div>`;
+};
+const movieHTML = generateMovieHTML(movie);
+postMovies.innerHTML += movieHTML; // всё, добавлена
+
+};
+document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
+
+// ВСЁ, КОНЕЦ. 
 
 
 
@@ -393,4 +437,4 @@ function subscribeCheckValidity(e) {
 	}
 }
 submit.addEventListener("click", subscribeCheckValidity);
-// Lena
+// Lena 
