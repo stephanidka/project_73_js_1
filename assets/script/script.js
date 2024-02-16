@@ -283,10 +283,24 @@ const fetchFilteredMovies = async () => {
     const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
 
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
-    console.log(genreCheckboxes)
     console.log(res);
-};
 
+    const movie = res.docs[0]; // это добавление картики в блок search-results
+    console.log(movie);
+    const postMovies = document.querySelector(".search-results");
+    const generateMovieHTML = (movie) => {
+        return `
+        <div class="post">
+        <img src="${movie.poster.url}" alt="${movie.name} Poster">
+            <p>${movie.name}</p>
+            <p>${movie.countries.map(country => country.name).join(', ')}</p>
+            <p>${movie.year}</p>
+        </div>`;
+};
+const movieHTML = generateMovieHTML(movie);
+postMovies.innerHTML += movieHTML; // всё, добавлена
+
+};
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
 // ВСЁ, КОНЕЦ. 
