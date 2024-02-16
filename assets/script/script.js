@@ -201,10 +201,11 @@ const fetchFiltrMovies = async (
     year,
     countrie,
     genres,
+    type,
     page = 1,
     limit = 10
         ) => {
-    const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&type=movie&&tv-series&&cartoon&&animated-series&&anime`;
     const headers = {
     accept: "application/json",
     "X-API-KEY": token,
@@ -219,7 +220,6 @@ const fetchFilteredMovies = async () => {
     const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
 
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
-    console.log(genreCheckboxes)
     console.log(res);
 };
 
