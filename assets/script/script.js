@@ -265,11 +265,10 @@ const fetchFiltrMovies = async (
     year,
     countrie,
     genres,
-    type,
     page = 1,
     limit = 10
         ) => {
-    const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&type=movie&&tv-series&&cartoon&&animated-series&&anime`;
+    const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
     const headers = {
     accept: "application/json",
     "X-API-KEY": token,
@@ -285,8 +284,23 @@ const fetchFilteredMovies = async () => {
 
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
     console.log(res);
-};
 
+    const movie = res.docs[0]; // это добавление картики в блок search-results
+    console.log(movie);
+    const postMovies = document.querySelector(".search-results");
+    const generateMovieHTML = (movie) => {
+        return `
+        <div class="post">
+        <img src="${movie.poster.url}" alt="${movie.name} Poster">
+            <p>${movie.name}</p>
+            <p>${movie.countries.map(country => country.name).join(', ')}</p>
+            <p>${movie.year}</p>
+        </div>`;
+};
+const movieHTML = generateMovieHTML(movie);
+postMovies.innerHTML += movieHTML; // всё, добавлена
+
+};
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
 // ВСЁ, КОНЕЦ. 

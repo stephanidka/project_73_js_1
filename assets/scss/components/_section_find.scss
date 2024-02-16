@@ -68,3 +68,19 @@
         flex-direction: column;
     }
 }
+
+// это стили для добавленной ячейки с данными о фильме
+.post {
+    padding: 10px;
+    border: 1px solid #ccc; //для наглядности
+    border-radius: 5px;
+    width: 200px; 
+}
+
+.post img {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin-bottom: 10px; 
+}
+// это конец :)
