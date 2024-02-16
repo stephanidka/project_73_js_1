@@ -256,10 +256,12 @@ const fetchFiltrMovies = async (
   page = 1,
   limit = 10
 ) => {
-  const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+  const isChecked = false;
+  const type = isChecked ? "movie" : "tv-series";
+  const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectedFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&type=${type}`;
   const headers = {
     accept: "application/json",
-    "X-API-KEY": token,
+    "X-API-KEY": API_KEY,
   };
   const response = await fetch(url, { headers });
   const data = await response.json();
@@ -367,35 +369,35 @@ document.querySelector('.section-search__glow-on-hover').addEventListener('click
 // Lena
 // const switcher = document.querySelector(".section-search__label");
 // console.log(switcher);
-let seriesArray = []; //series array
+// let seriesArray = []; //series array
 
-function getSeries() {
-  let checkbox = document.getElementById("switch");
-  if (checkbox.checked == true) {
-    const fetchFiltrSeries = async (
-      year,
-      countrie,
-      genres,
-      page = 1,
-      limit = 10,
-      type = tv - series,
-    ) => {
-      const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}$type.name=${tv - series}`;
-      const titles = {
-        accept: "application/json",
-        "X-API-KEY": token,
-      };
-      const response = await fetch(url, { titles });
-      const data = await response.json();
-      return data;
-    };
-    const fetchFilteredSeries = async () => {
-      const series = Array.type[tv - series];
-      const result = await fetchFiltrSeries;
-      console.log(result);
-    }
-  }
-};
+// function getSeries() {
+//   let checkbox = document.getElementById("switch");
+//   if (checkbox.checked == true) {
+//     const fetchFiltrSeries = async (
+//       year,
+//       countrie,
+//       genres,
+//       page = 1,
+//       limit = 10,
+//       type = tv - series,
+//     ) => {
+//       const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}$type.name=${tv - series}`;
+//       const titles = {
+//         accept: "application/json",
+//         "X-API-KEY": token,
+//       };
+//       const response = await fetch(url, { titles });
+//       const data = await response.json();
+//       return data;
+//     };
+//     const fetchFilteredSeries = async () => {
+//       const series = Array.type[tv - series];
+//       const result = await fetchFiltrSeries;
+//       console.log(result);
+//     }
+//   }
+// };
 
 //     }
 // console.log(checkbox);
