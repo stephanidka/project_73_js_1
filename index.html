@@ -94,10 +94,12 @@
       <!-- блок Арины начало -->
       <section class="section-search">
         <h2 class="section-search__title_one">Your choice:</h2>
-        <h4 class="section-search__title_two">Films</h4>
-        <input class="section-search__input_switch" type="checkbox" id="switch" /><label class="section-search__label"
-          for="switch">Toggle</label>
-        <h4 class="section-search__title_three">Series</h4>
+        <div class="section-search__switch">
+          <h4 class="section-search__title_two">Films</h4>
+          <input class="section-search__input_switch" type="checkbox" id="switch" />
+          <label class="section-search__label" for="switch">Toggle</label>
+          <h4 class="section-search__title_three">Series</h4>
+        </div>
         <div class="section-search__select_search_one">
           <select name="country" id="country_select" class="dropbtn">
             <option value="">Country</option>
@@ -192,36 +194,54 @@
           </select>
         </div>
         <div class="container-input">
-          <div class="container-input__column_one">
-            <input class="container-input__tag" type="checkbox" name="genre" value="аниме" id="anime" /><label
-              class="container-input__label_tag" for="tag">Anime</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="биография" id="biografiya" /><label
-              class="container-input__label_tag" for="tag">Biography</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="боевик" id="boevik"
-              value="боевик" /><label class="container-input__label_tag" for="tag">Action</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="детектив" id="detektiv" /><label
-              class="container-input__label_tag" for="tag">Detektiv</label>
-          </div>
-          <div class="container-input__column_two">
-            <input class="container-input__tag" type="checkbox" name="genre" value="детский" id="detskiy" /><label
-              class="container-input__label_tag" for="tag">Detskiy</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="драма" id="drama" /><label
-              class="container-input__label_tag" for="tag">Drama</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="комедия" id="komediya" /><label
-              class="container-input__label_tag" for="tag">Comedy</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="ужасы" id="uzhasy" /><label
-              class="container-input__label_tag" for="tag">Horror</label>
-          </div>
-          <div class="container-input__column_three">
-            <input class="container-input__tag" type="checkbox" name="genre" value="фэнтези" id="fentezi" /><label
-              class="container-input__label_tag" for="tag">Fantasy</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="триллер" id="triller" /><label
-              class="container-input__label_tag" for="tag">Thriller</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="фантастика" id="fantastika" /><label
-              class="container-input__label_tag" for="tag">Fantastika</label>
-            <input class="container-input__tag" type="checkbox" name="genre" value="семейный" id="semeynyy" /><label
-              class="container-input__label_tag" for="tag">Family</label>
-          </div>
+          <div class="container-input__checkbox">
+            <input class="container-input__tag" type="checkbox" name="genre" value="аниме" id="anime" />
+            <label class="container-input__label_tag" for="tag">Anime</label>
+          </div> 
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="биография" id="biografiya" />
+            <label class="container-input__label_tag" for="tag">Biography</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="боевик" id="boevik" value="боевик" />
+              <label class="container-input__label_tag" for="tag">Action</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="детектив" id="detektiv" />
+            <label class="container-input__label_tag" for="tag">Detektiv</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="детский" id="detskiy" />
+            <label class="container-input__label_tag" for="tag">Detskiy</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="драма" id="drama" />
+              <label class="container-input__label_tag" for="tag">Drama</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="комедия" id="komediya" />
+              <label class="container-input__label_tag" for="tag">Comedy</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="ужасы" id="uzhasy" />
+            <label class="container-input__label_tag" for="tag">Horror</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="фэнтези" id="fentezi" />
+              <label class="container-input__label_tag" for="tag">Fantasy</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="триллер" id="triller" />
+            <label class="container-input__label_tag" for="tag">Thriller</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="фантастика" id="fantastika" />
+            <label class="container-input__label_tag" for="tag">Fantastika</label>
+            </div>
+            <div class="container-input__checkbox">
+              <input class="container-input__tag" type="checkbox" name="genre" value="семейный" id="semeynyy" />
+            <label class="container-input__label_tag" for="tag">Family</label>
+            </div>
         </div>
         <button class="section-search__glow-on-hover" type="button">
           Find
