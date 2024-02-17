@@ -114,7 +114,7 @@ myModal.addEventListener('click', event => {
 
 
 
-const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
+const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
@@ -140,21 +140,6 @@ const fetchMoviesByName = async (query, page = 1, limit = 10) => {
     return { films: [] };
   }
 };
-const inputHeader = document.querySelector(".inputHeader")    
-    const fetchFilteredMoviesName = async () => {
-      const movieName = document.querySelector(".inputHeader").value;
-      const res = await fetchMoviesByName(movieName);
-      console.log(res)
-      // inputHeader.innerHTML = "";
-    };
-    inputHeader.addEventListener('keydown', function(event) {
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        fetchFilteredMoviesName();
-      }});
-    ;
-    // data.films.forEach((movie) => {
-      // const movieEl = document.createElement("div")
 
 function getClassByRate(vote) {
   if (vote >= 7) {
@@ -264,7 +249,7 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = '4WDPHG2-KX44HDM-K2F0Z45-CB19KQT';
+const token = 'YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C';
 const fetchFiltrMovies = async (
     year,
     countrie,
@@ -272,17 +257,17 @@ const fetchFiltrMovies = async (
     page = 1,
     limit = 9
 ) => {
-  const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
-  let responseURL;
-  if (switcherMovieSeries.checked) {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&null.poster.url=!`;
-  } else {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&null.poster.url=!`;
-  }
-  const url = responseURL;
-  const headers = {
+    const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
+    let responseURL;
+    if (switcherMovieSeries.checked) {
+        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    } else {
+        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    }
+    const url = responseURL;
+    const headers = {
     accept: "application/json",
-    "X-API-KEY": token,
+    "X-API-KEY": API_KEY,
     };
     const response = await fetch(url, { headers });
     const data = await response.json();
