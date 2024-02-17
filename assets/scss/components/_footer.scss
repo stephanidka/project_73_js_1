@@ -44,3 +44,11 @@
     background-color: #1d1e24;
     justify-content: center;
 }
+
+.footer_wrapper-rules,
+.footer_wrapper-us,
+.footer_wrapper-contacts {
+    @media screen and (max-width: 740px) {
+        font-size: 0.8rem;
+    }
+}

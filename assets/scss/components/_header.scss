@@ -18,6 +18,10 @@
       font-size: 2rem;
       padding: 1vw;
     }
+    @media screen and (max-width: 740px) {
+      font-size: 1.7rem;
+      padding: 1.7vw;
+    }
     }
     
     .inputHeader {
