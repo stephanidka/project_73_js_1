@@ -113,13 +113,13 @@ myModal.addEventListener('click', event => {
 
 
 
+
 const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-  const encodedQuery = encodeURIComponent(query); // Кодирование значения query
+  const encodedQuery = encodeURIComponent(query);
   const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
-  // const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${query}`;
   const headers = {
     accept: "application/json",
     "X-API-KEY": API_KEY,
@@ -133,11 +133,11 @@ const fetchMoviesByName = async (query, page = 1, limit = 10) => {
     }
 
     const data = await response.json();
-    console.log("Response from API:", data); // Log the response
+    console.log("Response from API:", data);
     return data;
   } catch (error) {
     console.error("Error fetching movies:", error.message);
-    return { films: [] }; // Return an empty array if there's an error
+    return { films: [] };
   }
 };
 const inputHeader = document.querySelector(".inputHeader")    
@@ -156,7 +156,6 @@ const inputHeader = document.querySelector(".inputHeader")
     // data.films.forEach((movie) => {
       // const movieEl = document.createElement("div")
 
-
 function getClassByRate(vote) {
   if (vote >= 7) {
     return "green";
@@ -169,46 +168,27 @@ function getClassByRate(vote) {
 
 function showMovies(data) {
   const moviesEl = document.querySelector(".search-results__conteiner");
-
-  // Очищаем предыдущие фильмы
   moviesEl.innerHTML = "";
 
   if (data && data.docs && Array.isArray(data.docs)) {
     data.docs.forEach((movie) => {
       const movieEl = document.createElement("div");
-      movieEl.classList.add("movie");
-      movieEl.innerHTML = `
-        <div class="movie__cover-inner">
-          <img
-            src="${movie.posterUrlPreview}"
-            class="movie__cover"
-            alt="${movie.nameRu}"
-          />
-          <div class="movie__cover--darkened"></div>
-        </div>
-        <div class="movie__info">
-          <div class="movie__title">${movie.nameRu}</div>
-          <div class="movie__category">${movie.genres.map(
-            (genre) => ` ${genre.genre}`
-          )}</div>
-          ${
-            movie.rating &&
-            `
-              <div class="movie__average movie__average--${getClassByRate(
-                movie.rating
-              )}">${movie.rating}</div>
-            `
-          }
-        </div>
-      `;
-      moviesEl.appendChild(movieEl);
+      const generateMovieHTML = (movie) => {
+        return `
+        <div class="post">
+            <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <p class="search-results__name">${movie.name}</p>
+            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
+            <p class="search-results__par">${movie.year}</p>
+            <button class="btn__add" type="button">Add to my film list</button>
+        </div>`;
+      };
+      const movieHTML = generateMovieHTML(movie);
+      movieEl.innerHTML += movieHTML;
+      moviesEl.appendChild(movieEl); // Append the movie element to the container
     });
-  } else {
-    console.error("Data or data.docs is undefined or not an array");
   }
 }
-
-
 
 const form = document.querySelector(".search_movie");
 const search = document.querySelector(".inputHeader");
@@ -217,17 +197,12 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   if (search.value) {
-    try {
-      const moviesData = await fetchMoviesByName(search.value);
-      showMovies(moviesData);
-    } catch (error) {
-      console.error("Error in form submission:", error.message);
-    }
+    const moviesData = await fetchMoviesByName(search.value);
+    showMovies(moviesData);
 
     search.value = "";
   }
 });
-
 
 
 
