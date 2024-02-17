@@ -5,12 +5,12 @@
 	width: 33%;
 	height: calc(100vh - 14.813vw);
 	padding: 1vw;
+	height: auto;
 	@media screen and (max-width: 934px) {
 		width: 60%;
 	}
 	@media screen and (max-width: 740px) {
 		width: 100%;
-		height: auto;
 	}
 	@media screen and (max-width: 600px) {
 
