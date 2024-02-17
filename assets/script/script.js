@@ -109,18 +109,20 @@ myModal.addEventListener("click", (event) => {
 	if (event._isClickWithInModal) return;
 	event.currentTarget.classList.remove("open");
 });
-//НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
+
+//Блок Софии
+//Начало поиска по названию
 const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
-const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-	const encodedQuery = encodeURIComponent(query);
-	const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
-	const headers = {
-		accept: "application/json",
-		"X-API-KEY": API_KEY,
-	};
+const fetchMoviesByName = async (query, page = 1, limit = 9) => {
+  const encodedQuery = encodeURIComponent(query);
+  const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
+  const headers = {
+    accept: "application/json",
+    "X-API-KEY": API_KEY,
+  };
 
 	try {
 		const response = await fetch(url, { headers });
@@ -168,12 +170,12 @@ function showMovies(data) {
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
-			};
-			const movieHTML = generateMovieHTML(movie);
-			movieEl.innerHTML += movieHTML;
-			moviesEl.appendChild(movieEl); // Append the movie element to the container
-		});
-	}
+      };
+      const movieHTML = generateMovieHTML(movie);
+      movieEl.innerHTML += movieHTML;
+      moviesEl.appendChild(movieEl); 
+    });
+  }
 }
 
 const form = document.querySelector(".search_movie");
@@ -189,6 +191,16 @@ form.addEventListener("submit", async (e) => {
 		search.value = "";
 	}
 });
+//Конец поиска по названию
+//alert для меню
+allFilms.addEventListener('click', function() {
+  alert('Данная ссылка находится в процессе разработки');
+});
+
+contactUs.addEventListener('click', function() {
+  alert('Данная ссылка находится в процессе разработки');
+});
+
 
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
@@ -227,7 +239,7 @@ function closeOnClick() {
 //БУРГЕР МЕНЮ КОНЕЦ
 
 //Конец части Софии
-//КОНЕЦ ПОИСКА
+
 
 // ЭТО ПОИСК ПО ПАРАМЕТРАМ,
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
@@ -367,7 +379,6 @@ function subscribeCheckValidity(e) {
 		el.innerHTML = mess;
 	}
 }
-submit.addEventListener("click", subscribeCheckValidity);
 // Lena
 
 /* Арина начало кода*/
