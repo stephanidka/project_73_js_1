@@ -111,80 +111,85 @@ myModal.addEventListener('click', event => {
 
 
 
-const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
+const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2';
 
-const fetchMoviesByName = async (query, page = 1, limit = 10) => {
+const fetchMoviesByName = async (
+  query, 
+  page = 1, 
+  limit = 10
+  ) => {
   const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
-  const headers = new Headers({
+  const headers = {
     accept: "application/json",
     "X-API-KEY": API_KEY,
-  });
+  };
 
   const response = await fetch(url, { headers });
   const data = await response.json();
 
   return data;
 };
+const inputHeader = document.querySelector(".inputHeader")    
+    const fetchFilteredMoviesName = async () => {
+      const movieName = document.querySelector(".inputHeader").value;
+      const res = await fetchMoviesByName(movieName);
+      console.log(res)
+      // inputHeader.innerHTML = "";
+    };
+    inputHeader.addEventListener('keydown', function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        fetchFilteredMoviesName();
+      }});
+    ;
+    // data.films.forEach((movie) => {
+      // const movieEl = document.createElement("div")
 
-// Пример использования
-// const movies = await fetchMoviesByName("avatar"); // тут await без async
 
-//console.log(movies); // Выводит список фильмов --movies is not defined
+      // movieEl.classList.add("movie");
+      // movieEl.innerHTML = `
+      //     <div class="movie__cover-inner">
+      //     <img
+      //       src="${movie.posterUrlPreview}"
+      //       class="movie__cover"
+      //       alt="${movie.nameRu}"
+      //     />
+      //     <div class="movie__cover--darkened"></div>
+      //   </div>
+      //   <div class="movie__info">
+      //     <div class="movie__title">${movie.nameRu}</div>
+      //     <div class="movie__category">${movie.genres.map(
+      //       (genre) => ` ${genre.genre}`
+      //     )}</div>
+      //     ${
+      //       movie.rating &&
+      //       `
+      //     <div class="movie__average movie__average--${getClassByRate(
+      //       movie.ratingr
+      //     )}">${movie.rating}</div>
+      //     `
+      //     }
+      //   </div>
+      //     `;
+      // moviesEl.appendChild(movieEl);
+  //   });
 
-//КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+  // }
 
-//НАЧАЛО ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
-// function showMovies(data) {
-//     const moviesEl = document.querySelector(".movies");
+  // const form = document.querySelector("form");
+  // const search = document.querySelector(".header__search");
 
-//     // Очищаем предыдущие фильмы
-//     document.querySelector(".movies").innerHTML = "";
+  // form.addEventListener("submit", (e) => {
+  //   e.preventDefault();
 
-//     data.films.forEach((movie) => {
-//       const movieEl = document.createElement("div");
-//       movieEl.classList.add("movie");
-//       movieEl.innerHTML = `
-//           <div class="movie__cover-inner">
-//           <img
-//             src="${movie.posterUrlPreview}"
-//             class="movie__cover"
-//             alt="${movie.nameRu}"
-//           />
-//           <div class="movie__cover--darkened"></div>
-//         </div>
-//         <div class="movie__info">
-//           <div class="movie__title">${movie.nameRu}</div>
-//           <div class="movie__category">${movie.genres.map(
-//             (genre) => ` ${genre.genre}`
-//           )}</div>
-//           ${
-//             movie.rating &&
-//             `
-//           <div class="movie__average movie__average--${getClassByRate(
-//             movie.rating
-//           )}">${movie.rating}</div>
-//           `
-//           }
-//         </div>
-//           `;
-//       moviesEl.appendChild(movieEl);
-//     });
-//   }
+  //   const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
+  //   if (search.value) {
+  //     getMovies(apiSearchUrl);
 
-//   const form = document.querySelector("form");
-//   const search = document.querySelector(".header__search");
-
-//   form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-
-//     const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
-//     if (search.value) {
-//       getMovies(apiSearchUrl);
-
-//       search.value = "";
-//     }
-//   });
+  //     search.value = "";
+  //   }
+  // });
 //КОНЕЦ ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
 
 
@@ -259,14 +264,14 @@ const fetchFiltrMovies = async (
   const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
   let responseURL;
   if (switcherMovieSeries.checked) {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&null.poster.url=!`;
   } else {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&null.poster.url=!`;
   }
   const url = responseURL;
   const headers = {
     accept: "application/json",
-    "X-API-KEY": token,
+    "X-API-KEY": API_KEY,
   };
   const response = await fetch(url, { headers });
   const data = await response.json();
