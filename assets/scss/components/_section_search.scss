@@ -23,7 +23,7 @@
 			font-size: 1.5rem;
 		}
 	}
-	&__switch{
+	&__switch {
 		display: flex;
 	}
 	&__title_two {
@@ -187,7 +187,10 @@
 		width: 80%;
 		margin-left: 3vw;
 	}
-	&__checkbox{
+	@media screen and (max-width: 496px) {
+		margin-left: 18vw;
+	}
+	&__checkbox {
 		width: 33%;
 		margin-bottom: 3px;
 		@media screen and (max-width: 1416px) {
