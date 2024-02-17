@@ -78,6 +78,10 @@ document.getElementById('validate').addEventListener('click', function () {
   checkMovie.forEach((elem) => {
     elem.removeAttribute('disabled');
   });
+  const btnAddFilm = document.querySelectorAll('.btn__add');
+  btnAddFilm.forEach((elem) => {
+    elem.removeAttribute('disabled');
+  });
 });
 validateButton.addEventListener('click', submitModal);
 
@@ -114,7 +118,7 @@ myModal.addEventListener('click', event => {
 
 
 
-const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
+const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
@@ -165,7 +169,7 @@ function showMovies(data) {
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
-            <button class="btn__add" type="button">Add to my film list</button>
+            <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
       };
       const movieHTML = generateMovieHTML(movie);
@@ -249,7 +253,7 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = '4WDPHG2-KX44HDM-K2F0Z45-CB19KQT';
+const token = 'YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C';
 const fetchFiltrMovies = async (
     year,
     countrie,
@@ -291,7 +295,7 @@ const fetchFilteredMovies = async () => {
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
-            <button class="btn__add" type="button">Add to my film list</button>
+            <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
       };
       const movieHTML = generateMovieHTML(movie);
