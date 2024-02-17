@@ -256,9 +256,7 @@ const fetchFiltrMovies = async (
   page = 1,
   limit = 10
 ) => {
-  const isChecked = false;
-  const type = isChecked ? "movie" : "tv-series";
-  const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectedFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&type=${type}`;
+  const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectedFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
   const headers = {
     accept: "application/json",
     "X-API-KEY": API_KEY,
@@ -272,23 +270,23 @@ const fetchFilteredMovies = async () => {
   const countrySelect = document.getElementById('country_select').value;
   const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
 
-    const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
-    console.log(res);
+  const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
+  console.log(res);
 
-    const movie = res.docs[0]; // это добавление картики в блок search-results
-    console.log(movie);
-    const postMovies = document.querySelector(".search-results");
-    const generateMovieHTML = (movie) => {
-        return `
+  const movie = res.docs[0]; // это добавление картики в блок search-results
+  console.log(movie);
+  const postMovies = document.querySelector(".search-results");
+  const generateMovieHTML = (movie) => {
+    return `
         <div class="post">
         <img src="${movie.poster.url}" alt="${movie.name} Poster">
             <p>${movie.name}</p>
             <p>${movie.countries.map(country => country.name).join(', ')}</p>
             <p>${movie.year}</p>
         </div>`;
-};
-const movieHTML = generateMovieHTML(movie);
-postMovies.innerHTML += movieHTML; // всё, добавлена
+  };
+  const movieHTML = generateMovieHTML(movie);
+  postMovies.innerHTML += movieHTML; // всё, добавлена
 
 };
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
@@ -381,46 +379,6 @@ document.querySelector('.section-search__glow-on-hover').addEventListener('click
 
 
 // Lena
-// const switcher = document.querySelector(".section-search__label");
-// console.log(switcher);
-// let seriesArray = []; //series array
-
-// function getSeries() {
-//   let checkbox = document.getElementById("switch");
-//   if (checkbox.checked == true) {
-//     const fetchFiltrSeries = async (
-//       year,
-//       countrie,
-//       genres,
-//       page = 1,
-//       limit = 10,
-//       type = tv - series,
-//     ) => {
-//       const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}$type.name=${tv - series}`;
-//       const titles = {
-//         accept: "application/json",
-//         "X-API-KEY": token,
-//       };
-//       const response = await fetch(url, { titles });
-//       const data = await response.json();
-//       return data;
-//     };
-//     const fetchFilteredSeries = async () => {
-//       const series = Array.type[tv - series];
-//       const result = await fetchFiltrSeries;
-//       console.log(result);
-//     }
-//   }
-// };
-
-//     }
-// console.log(checkbox);
-// let output = [];
-// checkbox.forEach((checkbox) => {
-//     output.push(checkbox.value);
-//     // });
-//     // seriesArray = output;
-// }
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
