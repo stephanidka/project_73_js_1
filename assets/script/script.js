@@ -407,13 +407,16 @@ function wantToSeeIt(event) {
 		// Создание чекбокса
 		let checkbox = document.createElement("input");
 		checkbox.type = "checkbox";
-		checkbox.className = "check_movie";
+		checkbox.classList = "check_movie";
 		// Создание элемента списка и добавление названия фильма и чекбокса
 		let listItem = document.createElement("li");
 		listItem.appendChild(checkbox);
 		listItem.appendChild(document.createTextNode(movieName));
 		watchList.appendChild(listItem);
 		movie.remove();
+
+		// Сохранение названия фильма в локальном хранилище
+		saveMovieToLocalStorage(movieName);
 	}
 }
 
@@ -422,8 +425,48 @@ function removeFromWatchList(event) {
 	if (event.target.classList.contains("check_movie")) {
 		let listItem = event.target.parentNode;
 		listItem.remove();
+
+		// Удаление названия фильма из локального хранилища
+		let movieName = listItem.textContent.trim();
+		removeMovieFromLocalStorage(movieName);
 	}
 }
+
+// Функция для сохранения названия фильма в локальном хранилище
+function saveMovieToLocalStorage(movieName) {
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchListMovies.push(movieName);
+	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
+}
+
+// Функция для удаления названия фильма из локального хранилища
+function removeMovieFromLocalStorage(movieName) {
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchListMovies = watchListMovies.filter((item) => item !== movieName);
+	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
+}
+
+// Функция для отображения сохраненных фильмов при загрузке страницы
+function displayWatchListMovies() {
+	let watchList = document.querySelector(".film_list-movie");
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchList.innerHTML = ""; // Очищаем список перед добавлением сохраненных фильмов
+	watchListMovies.forEach(function (movieName) {
+		let listItem = document.createElement("li");
+		let checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.classList = "check_movie";
+		listItem.appendChild(checkbox);
+		listItem.appendChild(document.createTextNode(movieName));
+		watchList.appendChild(listItem);
+	});
+}
+
+// Вызов функции для отображения сохраненных фильмов при загрузке страницы
+window.addEventListener("load", displayWatchListMovies);
 
 // Обработчик событий для добавления фильма в список "Хочу посмотреть"
 document
