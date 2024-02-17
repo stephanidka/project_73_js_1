@@ -78,6 +78,10 @@ document.getElementById('validate').addEventListener('click', function () {
   checkMovie.forEach((elem) => {
     elem.removeAttribute('disabled');
   });
+  const btnAddFilm = document.querySelectorAll('.btn__add');
+  btnAddFilm.forEach((elem) => {
+    elem.removeAttribute('disabled');
+  });
 });
 validateButton.addEventListener('click', submitModal);
 
@@ -165,7 +169,7 @@ function showMovies(data) {
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
-            <button class="btn__add" type="button">Add to my film list</button>
+            <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
       };
       const movieHTML = generateMovieHTML(movie);
@@ -267,7 +271,7 @@ const fetchFiltrMovies = async (
     const url = responseURL;
     const headers = {
     accept: "application/json",
-    "X-API-KEY": API_KEY,
+    "X-API-KEY": token,
     };
     const response = await fetch(url, { headers });
     const data = await response.json();
@@ -291,7 +295,7 @@ const fetchFilteredMovies = async () => {
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
-            <button class="btn__add" type="button">Add to my film list</button>
+            <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
       };
       const movieHTML = generateMovieHTML(movie);
@@ -301,91 +305,6 @@ const fetchFilteredMovies = async () => {
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
 // ВСЁ, КОНЕЦ. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Lena
 // const switcher = document.querySelector(".section-search__label");
@@ -431,30 +350,121 @@ document.querySelector('.section-search__glow-on-hover').addEventListener('click
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
-  e.preventDefault();
-  const emailCheck = document.getElementById("e-mail");
-  const expression =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const message = document.querySelector(".message");
+	e.preventDefault();
+	const emailCheck = document.getElementById("e-mail");
+	const expression =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const message = document.querySelector(".message");
 
-  if (!validate(expression, emailCheck.value)) {
-    notValid(submit, message, "Your email is invalid.");
-  } else {
-    valid(submit, message, "You have successfully subscribed.");
-  }
+	if (!validate(expression, emailCheck.value)) {
+		notValid(submit, message, "Your email is invalid.");
+	} else {
+		valid(submit, message, "You have successfully subscribed.");
+	}
 
-  function validate(regex, submit) {
-    return regex.test(submit);
-  }
-  function notValid(submit, el, mess) {
-    submit.classList.add("is-invalid");
-    el.innerHTML = mess;
-  }
-  function valid(submit, el, mess) {
-    submit.classList.remove("is-invalid");
-    submit.classList.add("is-valid");
-    el.innerHTML = mess;
-  }
+	function validate(regex, submit) {
+		return regex.test(submit);
+	}
+	function notValid(submit, el, mess) {
+		submit.classList.add("is-invalid");
+		el.innerHTML = mess;
+	}
+	function valid(submit, el, mess) {
+		submit.classList.remove("is-invalid");
+		submit.classList.add("is-valid");
+		el.innerHTML = mess;
+	}
 }
 submit.addEventListener("click", subscribeCheckValidity);
-// Lena 
+// Lena
+
+/* Арина начало кода*/
+// Функция для добавления фильма в блок "Хочу посмотреть"
+function wantToSeeIt(event) {
+	if (event.target.classList.contains("btn__add")) {
+		let addButton = event.target;
+		let movie = addButton.parentNode;
+		let watchList = document.querySelector(".film_list-movie");
+		// Удаление кнопки "Add to my film list" из оригинального фильма
+		addButton.remove();
+		// Клонирование элемента фильма
+		let clonedMovie = movie.cloneNode(true);
+		// Получение названия фильма
+		let movieName = clonedMovie.querySelector(
+			".search-results__name"
+		).textContent;
+		// Создание чекбокса
+		let checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.classList = "check_movie";
+		// Создание элемента списка и добавление названия фильма и чекбокса
+		let listItem = document.createElement("li");
+		listItem.appendChild(checkbox);
+		listItem.appendChild(document.createTextNode(movieName));
+		watchList.appendChild(listItem);
+		movie.remove();
+
+		// Сохранение названия фильма в локальном хранилище
+		saveMovieToLocalStorage(movieName);
+	}
+}
+
+// Функция для удаления фильма из списка "Хочу посмотреть"
+function removeFromWatchList(event) {
+	if (event.target.classList.contains("check_movie")) {
+		let listItem = event.target.parentNode;
+		listItem.remove();
+
+		// Удаление названия фильма из локального хранилища
+		let movieName = listItem.textContent.trim();
+		removeMovieFromLocalStorage(movieName);
+	}
+}
+
+// Функция для сохранения названия фильма в локальном хранилище
+function saveMovieToLocalStorage(movieName) {
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchListMovies.push(movieName);
+	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
+}
+
+// Функция для удаления названия фильма из локального хранилища
+function removeMovieFromLocalStorage(movieName) {
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchListMovies = watchListMovies.filter((item) => item !== movieName);
+	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
+}
+
+// Функция для отображения сохраненных фильмов при загрузке страницы
+function displayWatchListMovies() {
+	let watchList = document.querySelector(".film_list-movie");
+	let watchListMovies =
+		JSON.parse(localStorage.getItem("watchListMovies")) || [];
+	watchList.innerHTML = ""; // Очищаем список перед добавлением сохраненных фильмов
+	watchListMovies.forEach(function (movieName) {
+		let listItem = document.createElement("li");
+		let checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.classList = "check_movie";
+		listItem.appendChild(checkbox);
+		listItem.appendChild(document.createTextNode(movieName));
+		watchList.appendChild(listItem);
+	});
+}
+
+// Вызов функции для отображения сохраненных фильмов при загрузке страницы
+window.addEventListener("load", displayWatchListMovies);
+
+// Обработчик событий для добавления фильма в список "Хочу посмотреть"
+document
+	.querySelector(".search-results__conteiner")
+	.addEventListener("click", wantToSeeIt);
+
+// Обработчик событий для удаления фильма из списка "Хочу посмотреть"
+document
+	.querySelector(".film_list-movie")
+	.addEventListener("click", removeFromWatchList);
+
+/* 	Конец кода */
