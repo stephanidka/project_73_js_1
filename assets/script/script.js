@@ -108,81 +108,101 @@ myModal.addEventListener("click", (event) => {
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
 const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
-const API_URL_SEARCH =
-	"https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2";
+const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-	const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
-	const headers = new Headers({
+	const encodedQuery = encodeURIComponent(query); // Кодирование значения query
+	const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
+	// const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${query}`;
+	const headers = {
 		accept: "application/json",
 		"X-API-KEY": API_KEY,
-	});
+	};
 
-	const response = await fetch(url, { headers });
-	const data = await response.json();
+	try {
+		const response = await fetch(url, { headers });
 
-	return data;
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
+
+		const data = await response.json();
+		console.log("Response from API:", data); // Log the response
+		return data;
+	} catch (error) {
+		console.error("Error fetching movies:", error.message);
+		return { films: [] }; // Return an empty array if there's an error
+	}
 };
 
-// Пример использования
-// const movies = await fetchMoviesByName("avatar"); // тут await без async
+function getClassByRate(vote) {
+	if (vote >= 7) {
+		return "green";
+	} else if (vote > 5) {
+		return "orange";
+	} else {
+		return "red";
+	}
+}
 
-//console.log(movies); // Выводит список фильмов --movies is not defined
+function showMovies(data) {
+	const moviesEl = document.querySelector(".search-results__conteiner");
 
-//КОНЕЦ ПЕРВОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+	// Очищаем предыдущие фильмы
+	moviesEl.innerHTML = "";
 
-//НАЧАЛО ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
-// function showMovies(data) {
-//     const moviesEl = document.querySelector(".movies");
+	if (data && data.docs && Array.isArray(data.docs)) {
+		data.docs.forEach((movie) => {
+			const movieEl = document.createElement("div");
+			movieEl.classList.add("movie");
+			movieEl.innerHTML = `
+        <div class="movie__cover-inner">
+          <img
+            src="${movie.posterUrlPreview}"
+            class="movie__cover"
+            alt="${movie.nameRu}"
+          />
+          <div class="movie__cover--darkened"></div>
+        </div>
+        <div class="movie__info">
+          <div class="movie__title">${movie.nameRu}</div>
+          <div class="movie__category">${movie.genres.map(
+						(genre) => ` ${genre.genre}`
+					)}</div>
+          ${
+						movie.rating &&
+						`
+              <div class="movie__average movie__average--${getClassByRate(
+								movie.rating
+							)}">${movie.rating}</div>
+            `
+					}
+        </div>
+      `;
+			moviesEl.appendChild(movieEl);
+		});
+	} else {
+		console.error("Data or data.docs is undefined or not an array");
+	}
+}
 
-//     // Очищаем предыдущие фильмы
-//     document.querySelector(".movies").innerHTML = "";
+const form = document.querySelector(".search_movie");
+const search = document.querySelector(".inputHeader");
 
-//     data.films.forEach((movie) => {
-//       const movieEl = document.createElement("div");
-//       movieEl.classList.add("movie");
-//       movieEl.innerHTML = `
-//           <div class="movie__cover-inner">
-//           <img
-//             src="${movie.posterUrlPreview}"
-//             class="movie__cover"
-//             alt="${movie.nameRu}"
-//           />
-//           <div class="movie__cover--darkened"></div>
-//         </div>
-//         <div class="movie__info">
-//           <div class="movie__title">${movie.nameRu}</div>
-//           <div class="movie__category">${movie.genres.map(
-//             (genre) => ` ${genre.genre}`
-//           )}</div>
-//           ${
-//             movie.rating &&
-//             `
-//           <div class="movie__average movie__average--${getClassByRate(
-//             movie.rating
-//           )}">${movie.rating}</div>
-//           `
-//           }
-//         </div>
-//           `;
-//       moviesEl.appendChild(movieEl);
-//     });
-//   }
+form.addEventListener("submit", async (e) => {
+	e.preventDefault();
 
-//   const form = document.querySelector("form");
-//   const search = document.querySelector(".header__search");
+	if (search.value) {
+		try {
+			const moviesData = await fetchMoviesByName(search.value);
+			showMovies(moviesData);
+		} catch (error) {
+			console.error("Error in form submission:", error.message);
+		}
 
-//   form.addEventListener("submit", (e) => {
-//     e.preventDefault();
-
-//     const apiSearchUrl = `${API_URL_SEARCH}${search.value}`;
-//     if (search.value) {
-//       getMovies(apiSearchUrl);
-
-//       search.value = "";
-//     }
-//   });
-//КОНЕЦ ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
+		search.value = "";
+	}
+});
 
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
@@ -263,8 +283,10 @@ const fetchFilteredMovies = async () => {
 		genreCheckboxes
 	);
 	const postMovies = document.querySelector(".search-results__conteiner");
+	postMovies.innerHTML = "";
 	for (let i = 0; i < res.docs.length; i++) {
 		const movie = res.docs[i];
+		console.log(movie);
 		const generateMovieHTML = (movie, index) => {
 			return `
 		  <div class="post">
