@@ -10,15 +10,22 @@
     @media screen and (max-width: 1000px) {
 		height: 10vw;
 	}
+    @media screen and (max-width: 600px) {
+		display: flex;
+        flex-direction: column;
+        height: auto;
+	}
 }
 
 .button {
     color: white;
     @extend %font-family_jost;
+    border-radius: 10px;
 }
 
 #e-mail {
     color: #1d1e24;
+    border-radius: 10px;
 }
 
 .messengers {
@@ -35,6 +42,11 @@
     width: 10%;
     height: 10%;
     cursor: pointer;
+    @media screen and (max-width: 600px) {
+		width: 7vw;
+        height: 7vw;
+        margin-left: 1vw;
+	}
 }
 
 .message {

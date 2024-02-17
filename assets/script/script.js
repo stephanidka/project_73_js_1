@@ -274,7 +274,7 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
+const token = '4WDPHG2-KX44HDM-K2F0Z45-CB19KQT';
 const fetchFiltrMovies = async (
     year,
     countrie,
@@ -305,13 +305,14 @@ const fetchFilteredMovies = async () => {
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
     console.log(res);
     const postMovies = document.querySelector(".search-results__conteiner");
+    postMovies.innerHTML ='';
     for(let i = 0; i <= res.docs.length; i++){
       const movie = res.docs[i];
       console.log(movie);
       const generateMovieHTML = (movie) => {
         return `
         <div class="post">
-        <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
