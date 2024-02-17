@@ -1,14 +1,14 @@
-const fileName = "search_licon 1.png";
+const fileName = 'search_licon 1.png';
 const encodedFileName = encodeURIComponent(fileName);
 const url = `http://127.0.0.1:5500/assets/icons/${encodedFileName}`; // эта фигня убирает какие-то лишние пробелы
-("use strict");
-// валидация модального окна регистрации
-const nameInput = document.getElementById("name_input");
-const emailInput = document.getElementById("email_input");
-const ageInput = document.getElementById("age_input");
-const passwordInput = document.getElementById("password_input");
-const repeatInput = document.getElementById("repeat_input");
-const checkboxInput = document.getElementById("checkbox_input");
+"use strict"
+// валидация модального окна регистрации 
+const nameInput = document.getElementById('name_input');
+const emailInput = document.getElementById('email_input');
+const ageInput = document.getElementById('age_input');
+const passwordInput = document.getElementById('password_input');
+const repeatInput = document.getElementById('repeat_input');
+const checkboxInput = document.getElementById('checkbox_input')
 const validateButton = document.getElementById("validate");
 
 function submitModal() {
@@ -83,38 +83,40 @@ document.getElementById('validate').addEventListener('click', function () {
     elem.removeAttribute('disabled');
   });
 });
-validateButton.addEventListener("click", submitModal);
+validateButton.addEventListener('click', submitModal);
 
-// модальное окно
+
+// модальное окно 
 const myModal = document.getElementById("my-modal"),
-	openModal = document.querySelector(".open_modal");
+  openModal = document.querySelector(".open_modal");
 
 openModal.addEventListener("click", function () {
-	myModal.classList.add("open");
-});
+  myModal.classList.add("open");
+})
 // Закрыть модальное окно
-document
-	.getElementById("close-my-modal-btn")
-	.addEventListener("click", function () {
-		myModal.classList.remove("open");
-	});
+document.getElementById("close-my-modal-btn").addEventListener("click", function () {
+  myModal.classList.remove("open");
+})
 // Закрыть модальное окно при нажатии на Esc
-window.addEventListener("keydown", (e) => {
-	if (e.key === "Escape") {
-		myModal.classList.remove("open");
-	}
+window.addEventListener('keydown', (e) => {
+  if (e.key === "Escape") {
+    myModal.classList.remove("open");
+  }
 });
 // Закрыть модальное окно при клике вне его
-document
-	.querySelector("#my-modal .modal__box")
-	.addEventListener("click", (event) => {
-		event._isClickWithInModal = true;
-	});
-myModal.addEventListener("click", (event) => {
-	if (event._isClickWithInModal) return;
-	event.currentTarget.classList.remove("open");
+document.querySelector("#my-modal .modal__box").addEventListener('click', event => {
+  event._isClickWithInModal = true;
+});
+myModal.addEventListener('click', event => {
+  if (event._isClickWithInModal) return;
+  event.currentTarget.classList.remove('open');
 });
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
+
+
+
+
+
 
 const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
@@ -191,106 +193,64 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-function showMovies(data) {
-	const moviesEl = document.querySelector(".search-results__conteiner");
 
-	// Очищаем предыдущие фильмы
-	moviesEl.innerHTML = "";
 
-	if (data && data.docs && Array.isArray(data.docs)) {
-		data.docs.forEach((movie) => {
-			const movieEl = document.createElement("div");
-			movieEl.classList.add("movie");
-			movieEl.innerHTML = `
-        <div class="movie__cover-inner">
-          <img
-            src="${movie.posterUrlPreview}"
-            class="movie__cover"
-            alt="${movie.nameRu}"
-          />
-          <div class="movie__cover--darkened"></div>
-        </div>
-        <div class="movie__info">
-          <div class="movie__title">${movie.nameRu}</div>
-          <div class="movie__category">${movie.genres.map(
-						(genre) => ` ${genre.genre}`
-					)}</div>
-          ${
-						movie.rating &&
-						`
-              <div class="movie__average movie__average--${getClassByRate(
-								movie.rating
-							)}">${movie.rating}</div>
-            `
-					}
-        </div>
-      `;
-			moviesEl.appendChild(movieEl);
-		});
-	} else {
-		console.error("Data or data.docs is undefined or not an array");
-	}
-}
 
-const form = document.querySelector(".search_movie");
-const search = document.querySelector(".inputHeader");
 
-form.addEventListener("submit", async (e) => {
-	e.preventDefault();
-
-	if (search.value) {
-		try {
-			const moviesData = await fetchMoviesByName(search.value);
-			showMovies(moviesData);
-		} catch (error) {
-			console.error("Error in form submission:", error.message);
-		}
-
-		search.value = "";
-	}
-});
 
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
 const body = document.body;
 
+
 const menu = document.querySelector("#menu").cloneNode(1);
+
 
 hamb.addEventListener("click", hambHandler);
 
-function hambHandler(e) {
-	e.preventDefault();
 
-	popup.classList.toggle("open");
-	hamb.classList.toggle("active");
-	body.classList.toggle("noscroll");
-	renderPopup();
+function hambHandler(e) {
+  e.preventDefault();
+
+  popup.classList.toggle("open");
+  hamb.classList.toggle("active");
+  body.classList.toggle("noscroll");
+  renderPopup();
 }
+
 
 function renderPopup() {
-	popup.appendChild(menu);
+  popup.appendChild(menu);
 }
+
 
 const links = Array.from(menu.children);
 
+
 links.forEach((link) => {
-	link.addEventListener("click", closeOnClick);
+  link.addEventListener("click", closeOnClick);
 });
 
+
 function closeOnClick() {
-	popup.classList.remove("open");
-	hamb.classList.remove("active");
-	body.classList.remove("noscroll");
+  popup.classList.remove("open");
+  hamb.classList.remove("active");
+  body.classList.remove("noscroll");
 }
 
 //БУРГЕР МЕНЮ КОНЕЦ
 
+
 //Конец части Софии
 //КОНЕЦ ПОИСКА
 
-// ЭТО ПОИСК ПО ПАРАМЕТРАМ,
-// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
+
+
+
+
+// ЭТО ПОИСК ПО ПАРАМЕТРАМ,  
+// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
 const token = 'YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C';
@@ -333,9 +293,7 @@ const fetchFilteredMovies = async () => {
         <div class="post">
             <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
             <p class="search-results__name">${movie.name}</p>
-            <p class="search-results__par">${movie.countries
-							.map((country) => country.name)
-							.join(", ")}</p>
+            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
@@ -344,11 +302,94 @@ const fetchFilteredMovies = async () => {
       postMovies.innerHTML += movieHTML; // всё, добавлена
       }
 };
-document
-	.querySelector(".section-search__glow-on-hover")
-	.addEventListener("click", fetchFilteredMovies);
+document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
-// ВСЁ, КОНЕЦ.
+// ВСЁ, КОНЕЦ. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Lena
 // const switcher = document.querySelector(".section-search__label");
@@ -394,121 +435,30 @@ document
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
-	e.preventDefault();
-	const emailCheck = document.getElementById("e-mail");
-	const expression =
-		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	const message = document.querySelector(".message");
+  e.preventDefault();
+  const emailCheck = document.getElementById("e-mail");
+  const expression =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const message = document.querySelector(".message");
 
-	if (!validate(expression, emailCheck.value)) {
-		notValid(submit, message, "Your email is invalid.");
-	} else {
-		valid(submit, message, "You have successfully subscribed.");
-	}
+  if (!validate(expression, emailCheck.value)) {
+    notValid(submit, message, "Your email is invalid.");
+  } else {
+    valid(submit, message, "You have successfully subscribed.");
+  }
 
-	function validate(regex, submit) {
-		return regex.test(submit);
-	}
-	function notValid(submit, el, mess) {
-		submit.classList.add("is-invalid");
-		el.innerHTML = mess;
-	}
-	function valid(submit, el, mess) {
-		submit.classList.remove("is-invalid");
-		submit.classList.add("is-valid");
-		el.innerHTML = mess;
-	}
+  function validate(regex, submit) {
+    return regex.test(submit);
+  }
+  function notValid(submit, el, mess) {
+    submit.classList.add("is-invalid");
+    el.innerHTML = mess;
+  }
+  function valid(submit, el, mess) {
+    submit.classList.remove("is-invalid");
+    submit.classList.add("is-valid");
+    el.innerHTML = mess;
+  }
 }
 submit.addEventListener("click", subscribeCheckValidity);
-// Lena
-
-/* Арина начало кода*/
-// Функция для добавления фильма в блок "Хочу посмотреть"
-function wantToSeeIt(event) {
-	if (event.target.classList.contains("btn__add")) {
-		let addButton = event.target;
-		let movie = addButton.parentNode;
-		let watchList = document.querySelector(".film_list-movie");
-		// Удаление кнопки "Add to my film list" из оригинального фильма
-		addButton.remove();
-		// Клонирование элемента фильма
-		let clonedMovie = movie.cloneNode(true);
-		// Получение названия фильма
-		let movieName = clonedMovie.querySelector(
-			".search-results__name"
-		).textContent;
-		// Создание чекбокса
-		let checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.classList = "check_movie";
-		// Создание элемента списка и добавление названия фильма и чекбокса
-		let listItem = document.createElement("li");
-		listItem.appendChild(checkbox);
-		listItem.appendChild(document.createTextNode(movieName));
-		watchList.appendChild(listItem);
-		movie.remove();
-
-		// Сохранение названия фильма в локальном хранилище
-		saveMovieToLocalStorage(movieName);
-	}
-}
-
-// Функция для удаления фильма из списка "Хочу посмотреть"
-function removeFromWatchList(event) {
-	if (event.target.classList.contains("check_movie")) {
-		let listItem = event.target.parentNode;
-		listItem.remove();
-
-		// Удаление названия фильма из локального хранилища
-		let movieName = listItem.textContent.trim();
-		removeMovieFromLocalStorage(movieName);
-	}
-}
-
-// Функция для сохранения названия фильма в локальном хранилище
-function saveMovieToLocalStorage(movieName) {
-	let watchListMovies =
-		JSON.parse(localStorage.getItem("watchListMovies")) || [];
-	watchListMovies.push(movieName);
-	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
-}
-
-// Функция для удаления названия фильма из локального хранилища
-function removeMovieFromLocalStorage(movieName) {
-	let watchListMovies =
-		JSON.parse(localStorage.getItem("watchListMovies")) || [];
-	watchListMovies = watchListMovies.filter((item) => item !== movieName);
-	localStorage.setItem("watchListMovies", JSON.stringify(watchListMovies));
-}
-
-// Функция для отображения сохраненных фильмов при загрузке страницы
-function displayWatchListMovies() {
-	let watchList = document.querySelector(".film_list-movie");
-	let watchListMovies =
-		JSON.parse(localStorage.getItem("watchListMovies")) || [];
-	watchList.innerHTML = ""; // Очищаем список перед добавлением сохраненных фильмов
-	watchListMovies.forEach(function (movieName) {
-		let listItem = document.createElement("li");
-		let checkbox = document.createElement("input");
-		checkbox.type = "checkbox";
-		checkbox.classList = "check_movie";
-		listItem.appendChild(checkbox);
-		listItem.appendChild(document.createTextNode(movieName));
-		watchList.appendChild(listItem);
-	});
-}
-
-// Вызов функции для отображения сохраненных фильмов при загрузке страницы
-window.addEventListener("load", displayWatchListMovies);
-
-// Обработчик событий для добавления фильма в список "Хочу посмотреть"
-document
-	.querySelector(".search-results__conteiner")
-	.addEventListener("click", wantToSeeIt);
-
-// Обработчик событий для удаления фильма из списка "Хочу посмотреть"
-document
-	.querySelector(".film_list-movie")
-	.addEventListener("click", removeFromWatchList);
-
-/* 	Конец кода */
+// Lena 
