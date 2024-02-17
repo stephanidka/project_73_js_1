@@ -250,46 +250,51 @@ function closeOnClick() {
 const findButton = document.querySelector(".section-search__glow-on-hover");
 const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
 const fetchFiltrMovies = async (
-  year,
-  countrie,
-  genres,
-  page = 1,
-  limit = 10
+    year,
+    countrie,
+    genres,
+    page = 1,
+    limit = 9
 ) => {
-  const isChecked = false;
-  const type = isChecked ? "movie" : "tv-series";
-  const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectedFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&type=${type}`;
-  const headers = {
+    const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
+    let responseURL;
+    if (switcherMovieSeries.checked) {
+        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    } else {
+        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+    }
+    const url = responseURL;
+    const headers = {
     accept: "application/json",
-    "X-API-KEY": API_KEY,
-  };
-  const response = await fetch(url, { headers });
-  const data = await response.json();
-  return data;
+    "X-API-KEY": token,
+    };
+    const response = await fetch(url, { headers });
+    const data = await response.json();
+    return data;
 };
 const fetchFilteredMovies = async () => {
-  const yearSelect = document.getElementById('years-select').value;
-  const countrySelect = document.getElementById('country_select').value;
-  const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
-
+    const yearSelect = document.getElementById('years-select').value;
+    const countrySelect = document.getElementById('country_select').value;
+    const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
     console.log(res);
-
-    const movie = res.docs[0]; // это добавление картики в блок search-results
-    console.log(movie);
-    const postMovies = document.querySelector(".search-results");
-    const generateMovieHTML = (movie) => {
+    const postMovies = document.querySelector(".search-results__conteiner");
+    for(let i = 0; i <= res.docs.length; i++){
+      const movie = res.docs[i];
+      console.log(movie);
+      const generateMovieHTML = (movie) => {
         return `
         <div class="post">
-        <img src="${movie.poster.url}" alt="${movie.name} Poster">
-            <p>${movie.name}</p>
-            <p>${movie.countries.map(country => country.name).join(', ')}</p>
-            <p>${movie.year}</p>
+        <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <p class="search-results__name">${movie.name}</p>
+            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
+            <p class="search-results__par">${movie.year}</p>
+            <button class="btn__add" type="button">Add to my film list</button>
         </div>`;
-};
-const movieHTML = generateMovieHTML(movie);
-postMovies.innerHTML += movieHTML; // всё, добавлена
-
+      };
+      const movieHTML = generateMovieHTML(movie);
+      postMovies.innerHTML += movieHTML; // всё, добавлена
+      }
 };
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
