@@ -1,130 +1,127 @@
-const fileName = 'search_licon 1.png';
+const fileName = "search_licon 1.png";
 const encodedFileName = encodeURIComponent(fileName);
 const url = `http://127.0.0.1:5500/assets/icons/${encodedFileName}`; // эта фигня убирает какие-то лишние пробелы
-"use strict"
-// валидация модального окна регистрации 
-const nameInput = document.getElementById('name_input');
-const emailInput = document.getElementById('email_input');
-const ageInput = document.getElementById('age_input');
-const passwordInput = document.getElementById('password_input');
-const repeatInput = document.getElementById('repeat_input');
-const checkboxInput = document.getElementById('checkbox_input')
+("use strict");
+// валидация модального окна регистрации
+const nameInput = document.getElementById("name_input");
+const emailInput = document.getElementById("email_input");
+const ageInput = document.getElementById("age_input");
+const passwordInput = document.getElementById("password_input");
+const repeatInput = document.getElementById("repeat_input");
+const checkboxInput = document.getElementById("checkbox_input");
 const validateButton = document.getElementById("validate");
 
 function submitModal() {
-  let nameValue = nameInput.value;
-  if (nameValue.length < 2) {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter your name please, at least 2 characters");
-    return;
-  } else {
+	let nameValue = nameInput.value;
+	if (nameValue.length < 2) {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter your name please, at least 2 characters");
+		return;
+	} else {
+	}
+	let emailValue = emailInput.value;
+	const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (regexpEmail.test(emailValue)) {
+		console.log("it works :)");
+	} else {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter a valid e-mail please");
+		return;
+	}
+	let ageValue = ageInput.value;
+	if (ageValue.length === 0) {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter your age please");
+		return;
+	}
+	let passwordValue = passwordInput.value;
+	let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+	if (!regexpPassword.test(passwordValue)) {
+		console.log("it works too");
+		repeatInput.value = "";
+		alert("Enter your password please");
+		return;
+	} else {
+	}
 
-  };
-  let emailValue = emailInput.value;
-  const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (regexpEmail.test(emailValue)) {
-    console.log('it works :)')
-  } else {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter a valid e-mail please");
-    return;
-  };
-  let ageValue = ageInput.value;
-  if (ageValue.length === 0) {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter your age please");
-    return;
-  }
-  let passwordValue = passwordInput.value;
-  let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-  if (!regexpPassword.test(passwordValue)) {
-    console.log('it works too');
-    repeatInput.value = "";
-    alert("Enter your password please");
-    return;
-  }
-  else {
-  };
+	let repeatValue = repeatInput.value;
+	if (repeatValue.length === 0) {
+		alert("Repeat your password please");
+		return;
+	} else {
+	}
 
-  let repeatValue = repeatInput.value;
-  if (repeatValue.length === 0) {
-    alert("Repeat your password please");
-    return;
-  }
-  else {
-  };
+	if (!checkboxInput.checked) {
+		alert("Please accept the terms and conditions");
+		return;
+	}
 
-  if (!checkboxInput.checked) {
-    alert("Please accept the terms and conditions")
-    return;
-  }
-
-  if (passwordValue === repeatValue) {
-    alert("Welcome!");
-  }
-  else {
-    alert("Password mismatch");
-  };
-};
-validateButton.addEventListener('click', submitModal);
-//чекбоксы активны при регистрации 
-document.getElementById('validate').addEventListener('click', function () {
-
-  //чекбоксы активны при регистрации 
-  const checkMovie = document.querySelectorAll('.check_movie');
-  checkMovie.forEach((elem) => {
-    elem.removeAttribute('disabled');
-  });
+	if (passwordValue === repeatValue) {
+		alert("Welcome!");
+	} else {
+		alert("Password mismatch");
+	}
+}
+validateButton.addEventListener("click", submitModal);
+//чекбоксы активны при регистрации
+document.getElementById("validate").addEventListener("click", function () {
+	//чекбоксы активны при регистрации
+	const checkMovie = document.querySelectorAll(".check_movie");
+	checkMovie.forEach((elem) => {
+		elem.removeAttribute("disabled");
+	});
 });
-validateButton.addEventListener('click', submitModal);
+validateButton.addEventListener("click", submitModal);
 
-
-// модальное окно 
+// модальное окно
 const myModal = document.getElementById("my-modal"),
-  openModal = document.querySelector(".open_modal");
+	openModal = document.querySelector(".open_modal");
 
 openModal.addEventListener("click", function () {
-  myModal.classList.add("open");
-})
+	myModal.classList.add("open");
+});
 // Закрыть модальное окно
-document.getElementById("close-my-modal-btn").addEventListener("click", function () {
-  myModal.classList.remove("open");
-})
+document
+	.getElementById("close-my-modal-btn")
+	.addEventListener("click", function () {
+		myModal.classList.remove("open");
+	});
 // Закрыть модальное окно при нажатии на Esc
-window.addEventListener('keydown', (e) => {
-  if (e.key === "Escape") {
-    myModal.classList.remove("open");
-  }
+window.addEventListener("keydown", (e) => {
+	if (e.key === "Escape") {
+		myModal.classList.remove("open");
+	}
 });
 // Закрыть модальное окно при клике вне его
-document.querySelector("#my-modal .modal__box").addEventListener('click', event => {
-  event._isClickWithInModal = true;
-});
-myModal.addEventListener('click', event => {
-  if (event._isClickWithInModal) return;
-  event.currentTarget.classList.remove('open');
+document
+	.querySelector("#my-modal .modal__box")
+	.addEventListener("click", (event) => {
+		event._isClickWithInModal = true;
+	});
+myModal.addEventListener("click", (event) => {
+	if (event._isClickWithInModal) return;
+	event.currentTarget.classList.remove("open");
 });
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
-
-
 const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
-const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2';
+const API_URL_SEARCH =
+	"https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2";
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
-  const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
-  const headers = new Headers({
-    accept: "application/json",
-    "X-API-KEY": API_KEY,
-  });
+	const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=${page}&limit=${limit}&query=${query}`;
+	const headers = new Headers({
+		accept: "application/json",
+		"X-API-KEY": API_KEY,
+	});
 
-  const response = await fetch(url, { headers });
-  const data = await response.json();
+	const response = await fetch(url, { headers });
+	const data = await response.json();
 
-  return data;
+	return data;
 };
 
 // Пример использования
@@ -187,203 +184,130 @@ const fetchMoviesByName = async (query, page = 1, limit = 10) => {
 //   });
 //КОНЕЦ ВТОРОЙ ЧАСТИ ПОИСКА ПО НАЗВАНИЮ
 
-
-
-
-
-
-
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
 const body = document.body;
 
-
 const menu = document.querySelector("#menu").cloneNode(1);
-
 
 hamb.addEventListener("click", hambHandler);
 
-
 function hambHandler(e) {
-  e.preventDefault();
+	e.preventDefault();
 
-  popup.classList.toggle("open");
-  hamb.classList.toggle("active");
-  body.classList.toggle("noscroll");
-  renderPopup();
+	popup.classList.toggle("open");
+	hamb.classList.toggle("active");
+	body.classList.toggle("noscroll");
+	renderPopup();
 }
-
 
 function renderPopup() {
-  popup.appendChild(menu);
+	popup.appendChild(menu);
 }
-
 
 const links = Array.from(menu.children);
 
-
 links.forEach((link) => {
-  link.addEventListener("click", closeOnClick);
+	link.addEventListener("click", closeOnClick);
 });
 
-
 function closeOnClick() {
-  popup.classList.remove("open");
-  hamb.classList.remove("active");
-  body.classList.remove("noscroll");
+	popup.classList.remove("open");
+	hamb.classList.remove("active");
+	body.classList.remove("noscroll");
 }
 
 //БУРГЕР МЕНЮ КОНЕЦ
 
-
 //Конец части Софии
 //КОНЕЦ ПОИСКА
 
-
-
-
-
-// ЭТО ПОИСК ПО ПАРАМЕТРАМ,  
-// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу 
+// ЭТО ПОИСК ПО ПАРАМЕТРАМ,
+// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = '0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3';
+const token = "0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3";
 const fetchFiltrMovies = async (
-  year,
-  countrie,
-  genres,
-  page = 1,
-  limit = 9
+	year,
+	countrie,
+	genres,
+	page = 1,
+	limit = 9
 ) => {
-  const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
-  let responseURL;
-  if (switcherMovieSeries.checked) {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
-  } else {
-    responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
-  }
-  const url = responseURL;
-  const headers = {
-    accept: "application/json",
-    "X-API-KEY": token,
-  };
-  const response = await fetch(url, { headers });
-  const data = await response.json();
-  return data;
+	const switcherMovieSeries = document.getElementById("switch"); // это переключатель с фильмов на сериалы
+	let responseURL;
+	if (switcherMovieSeries.checked) {
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+	} else {
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+	}
+	const url = responseURL;
+	const headers = {
+		accept: "application/json",
+		"X-API-KEY": token,
+	};
+	const response = await fetch(url, { headers });
+	const data = await response.json();
+	return data;
 };
 const fetchFilteredMovies = async () => {
-  const yearSelect = document.getElementById('years-select').value;
-  const countrySelect = document.getElementById('country_select').value;
-  const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
-  const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
-  console.log(res);
-  const postMovies = document.querySelector(".search-results__conteiner");
-  for (let i = 0; i <= res.docs.length; i++) {
-    const movie = res.docs[i];
-    console.log(movie);
-    const generateMovieHTML = (movie) => {
-      return `
+	const yearSelect = document.getElementById("years-select").value;
+	const countrySelect = document.getElementById("country_select").value;
+	const genreCheckboxes = Array.from(
+		document.querySelectorAll('.container-input__tag[name="genre"]:checked')
+	).map((checkbox) => checkbox.value);
+	const res = await fetchFiltrMovies(
+		yearSelect,
+		countrySelect,
+		genreCheckboxes
+	);
+	console.log(res);
+	const postMovies = document.querySelector(".search-results__conteiner");
+	for (let i = 0; i <= res.docs.length; i++) {
+		const movie = res.docs[i];
+		console.log(movie);
+		const generateMovieHTML = (movie) => {
+			return `
         <div class="post">
-        <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+        <img class="search-results__img" src="${movie.poster.url}" alt="${
+				movie.name
+			}">
             <p class="search-results__name">${movie.name}</p>
-            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
+            <p class="search-results__par">${movie.countries
+							.map((country) => country.name)
+							.join(", ")}</p>
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" type="button">Add to my film list</button>
         </div>`;
-    };
-    const movieHTML = generateMovieHTML(movie);
-    postMovies.innerHTML += movieHTML; // всё, добавлена
-  }
+		};
+		const movieHTML = generateMovieHTML(movie);
+		postMovies.innerHTML += movieHTML; // всё, добавлена
+	}
 };
-document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
-
-// ВСЁ, КОНЕЦ. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+document
+	.querySelector(".section-search__glow-on-hover")
+	.addEventListener("click", fetchFilteredMovies);
+
+// ВСЁ, КОНЕЦ.
+
+const seebtn = document.querySelector(".btn__add");
+let tasks = []; // создаем пустой массив для хранения задач
+// Загрузка задач из Local Storage при загрузке страницы
+if (localStorage.getItem("tasks")) {
+	tasks = JSON.parse(localStorage.getItem("tasks"));
+}
+function WantToSeeIt() {
+	// Получить ссылку на элемент, который нужно переместить
+	let sourceDiv = document.getElementById("post");
+
+	// Получить ссылку на элемент, в который нужно вставить содержимое
+	let destinationDiv = document.getElementById("film_list-movie");
+
+	// Переместить содержимое
+	destinationDiv.appendChild(sourceDiv.firstChild);
+}
+seebtn.addEventListener("click", WantToSeeIt);
 
 // Lena
 // const switcher = document.querySelector(".section-search__label");
@@ -429,30 +353,30 @@ document.querySelector('.section-search__glow-on-hover').addEventListener('click
 
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
-  e.preventDefault();
-  const emailCheck = document.getElementById("e-mail");
-  const expression =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const message = document.querySelector(".message");
+	e.preventDefault();
+	const emailCheck = document.getElementById("e-mail");
+	const expression =
+		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	const message = document.querySelector(".message");
 
-  if (!validate(expression, emailCheck.value)) {
-    notValid(submit, message, "Your email is invalid.");
-  } else {
-    valid(submit, message, "You have successfully subscribed.");
-  }
+	if (!validate(expression, emailCheck.value)) {
+		notValid(submit, message, "Your email is invalid.");
+	} else {
+		valid(submit, message, "You have successfully subscribed.");
+	}
 
-  function validate(regex, submit) {
-    return regex.test(submit);
-  }
-  function notValid(submit, el, mess) {
-    submit.classList.add("is-invalid");
-    el.innerHTML = mess;
-  }
-  function valid(submit, el, mess) {
-    submit.classList.remove("is-invalid");
-    submit.classList.add("is-valid");
-    el.innerHTML = mess;
-  }
+	function validate(regex, submit) {
+		return regex.test(submit);
+	}
+	function notValid(submit, el, mess) {
+		submit.classList.add("is-invalid");
+		el.innerHTML = mess;
+	}
+	function valid(submit, el, mess) {
+		submit.classList.remove("is-invalid");
+		submit.classList.add("is-valid");
+		el.innerHTML = mess;
+	}
 }
 submit.addEventListener("click", subscribeCheckValidity);
-// Lena 
+// Lena
