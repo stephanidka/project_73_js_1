@@ -3,11 +3,13 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     color: white;
     @extend %font-family_jost;
-    justify-content: space-around;
     background-color: #1d1e24;
     align-items: center;
     padding-left: 2%;
-    padding-right: 2%;
+    height: 7vw;
+    @media screen and (max-width: 1000px) {
+		height: 10vw;
+	}
 }
 
 .button {
@@ -21,8 +23,9 @@
 
 .messengers {
     display: flex;
-    margin: 5px;
-    justify-content: center;
+    margin: 1vw;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .facebook,
@@ -40,34 +43,4 @@
     @extend %font-family_jost;
     background-color: #1d1e24;
     justify-content: center;
-}
-
-@media screen and (max-width: 1023px) {
-
-    .footer_wrapper,
-    .button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2%;
-        font-size: 0.5em;
-    }
-
-    .footer__icon-up {
-        height: 5%;
-        width: 5%;
-    }
-
-    #e-mail {
-        width: 20%;
-        height: 10%;
-    }
-
-    .facebook,
-    .insta,
-    .twitter {
-        padding: 1%;
-        width: 5%;
-        height: 5%;
-    }
 }

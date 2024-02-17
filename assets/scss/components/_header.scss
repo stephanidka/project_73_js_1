@@ -1,23 +1,23 @@
 #header {
-    height: 8.813rem;
+    height: 7.813vw;
     background-color: #1D1E24;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    @media screen and (max-width: 1000px) {
+      height: 10vw;
+    }
     }
     .title {
     width: 234px;
     height: 83px;
-    top: -219px;
-    left: -340;
     color: white;
-    font-family: 'Julius Sans One', sans-serif;
+    @extend %font-family_julius;
     font-size: 32px;
-    font-weight: 400;
-    line-height: 35px;
-    letter-spacing: 0em;
-    text-align: left;
-    
+    @media screen and (max-width: 1024px) {
+      font-size: 2rem;
+      padding: 1vw;
+    }
     }
     
     .inputHeader {
@@ -46,7 +46,7 @@
     height: 25px;
     top: -197px;
     left: 152px;
-    font-family: 'Jost', sans-serif;
+    @extend %font-family_jost;
     font-size: 16px;
     font-weight: 400;
     line-height: 23px;
@@ -67,7 +67,7 @@
     height: 25px;
     top: -197px;
     left: 230px;
-    font-family: 'Jost', sans-serif;
+    @extend %font-family_jost;
     font-size: 16px;
     font-weight: 400;
     line-height: 23px;
@@ -82,7 +82,7 @@
     height: 25px;
     top: -197px;
     left: 324px;
-    font-family: 'Jost', sans-serif;
+    @extend %font-family_jost;
     font-size: 16px;
     font-weight: 400;
     line-height: 23px;

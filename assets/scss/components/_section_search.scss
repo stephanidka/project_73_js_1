@@ -1,67 +1,51 @@
 .section-search {
-	display: grid;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 33%;
-	grid-template-areas:
-		"title_one   title_one  title_one"
-		"title_two  switch   title_three"
-		"select_search_one select_search_one select_search_one"
-		"select_search_two select_search_two select_search_two"
-		"input_tag   input_tag   input_tag";
-	@media screen and (max-width: 450px) {
-		width: 100%;
-		height: 130vw;
+	height: calc(100vh - 14.813vw);
+	padding: 1vw;
+	@media screen and (max-width: 934px) {
+		width: 60%;
 	}
-	justify-items: center;
+	@media screen and (max-width: 740px) {
+		width: 100%;
+		height: 60vw;
+	}
 	background-color: #4c4c4c;
 	&__title_one {
-		grid-area: title_one;
 		@extend %font-family_jost;
 		color: white;
 		font-weight: 400;
 		font-size: 1.5rem;
+		@media screen and (max-width: 740px) {
+			margin: 1vw 0 1vw 0;
+		}
+	}
+	&__switch{
+		display: flex;
 	}
 	&__title_two {
 		@extend %font-family_jost;
-		grid-area: title_two;
 		padding: 0 1vw 0 5vw;
 		justify-items: end;
 		color: white;
 		font-weight: 400;
 		line-height: 26px;
-		@media screen and (max-width: 450px) {
-			font-size: 9vw;
-			margin: 0;
+		@media screen and (max-width: 740px) {
+			padding: 0 1vw 0 0;
 		}
 	}
 	&__title_three {
 		@extend %font-family_jost;
-		grid-area: title_three;
 		padding: 0 5vw 0 1vw;
 		width: 3rem;
 		color: white;
 		font-weight: 400;
 		line-height: 26px;
-		@media screen and (max-width: 450px) {
-			font-size: 9vw;
-			margin: 0;
-		}
 	}
 	&__select_search_one {
-		grid-area: select_search_one;
-		height: 2.5rem;
-		border-radius: 0.8rem;
-
-		@media screen and (max-width: 450px) {
-			height: 2rem;
-		}
-	}
-	&__select_search_two {
-		grid-area: select_search_two;
-		height: 2.5rem;
-		border-radius: 0.8rem;
-		@media screen and (max-width: 450px) {
-			height: 2rem;
-		}
+		margin-bottom: 1vw;
 	}
 	&__input_switch:checked + label:after {
 		left: calc(100% - 0rem);
@@ -94,7 +78,6 @@
 		display: block;
 		border-radius: 1rem;
 		position: relative;
-		grid-area: switch;
 		margin: 1.5rem 0 0 0;
 		@media screen and (max-width: 450px) {
 			margin: 1vw 0 2vw 0;
@@ -180,51 +163,42 @@
 
 .container-input {
 	@extend %font-family_jost;
-	grid-area: input_tag;
-	display: grid;
-	grid-template-areas:
-		"column_one column_two column_three"
-		"column_one column_two column_three"
-		"column_one column_two column_three"
-		"column_one column_two column_three";
-	margin: 3rem 1rem 3rem 1rem;
-	width: 384px;
-	height: 123px;
-	@media screen and (max-width: 450px) {
-		width: 65%;
-		margin: 2rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 1vw;
+	width: 26vw;
+	@media screen and (max-width: 1415px) {
+		margin: 2vw 0 0 0;
+	}
+	@media screen and (max-width: 740px) {
+		width: 100%;
+	}
+	&__checkbox{
+		width: 33%;
+		margin-bottom: 3px;
+		@media screen and (max-width: 1416px) {
+			width: 50%;
+		}
+		@media screen and (max-width: 740px) {
+			width: 25%;
+		}
 	}
 	&__tag {
-		margin: 0 0 0 1px;
 		width: 3rem;
 		height: 1.5rem;
-		@media screen and (max-width: 800px) {
-			width: 3vw;
-		}
-		@media screen and (max-width: 450px) {
-			width: 6vw;
-			margin: 0 2vw 3vw 2vw;
-		}
-	}
-	&__container_input_tag {
-		background-color: #4c4c4c;
-		width: 40rem;
-		height: 35rem;
-		margin: auto;
 	}
 	&__label_tag {
 		font-weight: 400;
 		font-size: 1rem;
 		color: white;
 	}
-	&__column_one {
-		grid-area: column_one;
-	}
-	&__column_two {
-		grid-area: column_two;
-	}
-	&__column_three {
-		grid-area: column_three;
+	&__container_input_tag {
+		background-color: #4c4c4c;
+		width: 40rem;
+		height: 35rem;
+		margin: auto;
 	}
 }
 
@@ -243,7 +217,10 @@ option {
 	padding: 0.5rem;
 	font-size: 1rem;
 	color: #ffffff;
-	width: 16rem;
+	width: 17vw;
+	@media screen and (max-width: 740px) {
+		width: 30vw;
+	}
 	// Стили при наведении
 	&:hover {
 		border-color: #94fdae; // Цвет границы при наведении
