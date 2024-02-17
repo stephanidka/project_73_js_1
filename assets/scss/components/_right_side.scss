@@ -21,8 +21,8 @@
     font-size: 1.5rem;
     margin-top: 20px;
     color: #1D1E24;
-    @media screen and (max-width: 450px) {
-        font-size: 2.5rem;
+    @media screen and (max-width: 425px) {
+        font-size: 1.5rem;
     }
 }
 .title_subscribed{
@@ -31,9 +31,9 @@
     font-size: 1.5rem;
     color: #4C4C4C;
     margin-bottom: 2vw;
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 425px) {
         margin-bottom: 2vw;
-        font-size: 2.5rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -42,8 +42,8 @@
     font-weight: 400;
     font-size: 1rem;
     align-self: flex-start;
-    @media screen and (max-width: 450px) {
-        font-size: 2.5rem;
+    @media screen and (max-width: 425px) {
+        font-size: 1rem;
     }
 }
 .check_movie {
@@ -52,5 +52,8 @@
     height: 1.5rem;
     @media screen and (max-width: 800px) {
         margin: 0 0.6vw 0.5vw 1vw;
+    }
+    @media screen and (max-width: 425px) {
+        height: 1.3rem;
     }
 }
