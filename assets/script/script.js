@@ -254,7 +254,7 @@ const fetchFiltrMovies = async (
     countrie,
     genres,
     page = 1,
-    limit = 10
+    limit = 9
 ) => {
     const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
     let responseURL;
@@ -276,25 +276,25 @@ const fetchFilteredMovies = async () => {
     const yearSelect = document.getElementById('years-select').value;
     const countrySelect = document.getElementById('country_select').value;
     const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
-
     const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
     console.log(res);
-
-    const movie = res.docs[0]; // это добавление картики в блок search-results
-    console.log(movie);
-    const postMovies = document.querySelector(".search-results");
-    const generateMovieHTML = (movie) => {
+    const postMovies = document.querySelector(".search-results__conteiner");
+    for(let i = 0; i <= res.docs.length; i++){
+      const movie = res.docs[i];
+      console.log(movie);
+      const generateMovieHTML = (movie) => {
         return `
         <div class="post">
-        <img src="${movie.poster.url}" alt="${movie.name} Poster">
-            <p>${movie.name}</p>
-            <p>${movie.countries.map(country => country.name).join(', ')}</p>
-            <p>${movie.year}</p>
+        <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <p class="search-results__name">${movie.name}</p>
+            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
+            <p class="search-results__par">${movie.year}</p>
+            <button class="btn__add" type="button">Add to my film list</button>
         </div>`;
-};
-const movieHTML = generateMovieHTML(movie);
-postMovies.innerHTML += movieHTML; // всё, добавлена
-
+      };
+      const movieHTML = generateMovieHTML(movie);
+      postMovies.innerHTML += movieHTML; // всё, добавлена
+      }
 };
 document.querySelector('.section-search__glow-on-hover').addEventListener('click', fetchFilteredMovies);
 
