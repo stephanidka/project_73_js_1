@@ -114,7 +114,7 @@ myModal.addEventListener('click', event => {
 
 
 
-const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
+const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
