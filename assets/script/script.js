@@ -107,7 +107,7 @@ myModal.addEventListener("click", (event) => {
 });
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
-const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
+const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
 const fetchMoviesByName = async (query, page = 1, limit = 10) => {
@@ -247,7 +247,7 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
+const token = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const fetchFiltrMovies = async (
 	year,
 	countrie,
@@ -398,14 +398,21 @@ function wantToSeeIt(event) {
 		let watchList = document.querySelector(".film_list-movie");
 		// Удаление кнопки "Add to my film list" из оригинального фильма
 		addButton.remove();
-		// Клонирование элемент фильма
+		// Клонирование элемента фильма
 		let clonedMovie = movie.cloneNode(true);
-		// Добавляем чекбокс с классом check_movie
+		// Получение названия фильма
+		let movieName = clonedMovie.querySelector(
+			".search-results__name"
+		).textContent;
+		// Создание чекбокса
 		let checkbox = document.createElement("input");
 		checkbox.type = "checkbox";
 		checkbox.className = "check_movie";
-		clonedMovie.insertBefore(checkbox, clonedMovie.firstChild);
-		watchList.appendChild(clonedMovie);
+		// Создание элемента списка и добавление названия фильма и чекбокса
+		let listItem = document.createElement("li");
+		listItem.appendChild(checkbox);
+		listItem.appendChild(document.createTextNode(movieName));
+		watchList.appendChild(listItem);
 		movie.remove();
 	}
 }
@@ -413,8 +420,8 @@ function wantToSeeIt(event) {
 // Функция для удаления фильма из списка "Хочу посмотреть"
 function removeFromWatchList(event) {
 	if (event.target.classList.contains("check_movie")) {
-		let movie = event.target.parentNode;
-		movie.remove();
+		let listItem = event.target.parentNode;
+		listItem.remove();
 	}
 }
 
@@ -426,6 +433,6 @@ document
 // Обработчик событий для удаления фильма из списка "Хочу посмотреть"
 document
 	.querySelector(".film_list-movie")
-	.addEventListener("change", removeFromWatchList);
+	.addEventListener("click", removeFromWatchList);
 
 /* 	Конец кода */
