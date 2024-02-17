@@ -107,7 +107,7 @@ myModal.addEventListener("click", (event) => {
 });
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
-const API_KEY = "HDEBF23-6SH4XPP-J3BDH39-156PQCV";
+const API_KEY = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
 const API_URL_SEARCH =
 	"https://api.kinopoisk.dev/v1.4/movie/search?page=100&limit=2";
 
@@ -227,7 +227,7 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = "0P4K4P1-5PHMMD0-KXZ1VXP-9MQ1ZV3";
+const token = "4WDPHG2-KX44HDM-K2F0Z45-CB19KQT";
 const fetchFiltrMovies = async (
 	year,
 	countrie,
@@ -262,52 +262,38 @@ const fetchFilteredMovies = async () => {
 		countrySelect,
 		genreCheckboxes
 	);
-	console.log(res);
 	const postMovies = document.querySelector(".search-results__conteiner");
-	for (let i = 0; i <= res.docs.length; i++) {
+	for (let i = 0; i < res.docs.length; i++) {
 		const movie = res.docs[i];
-		console.log(movie);
-		const generateMovieHTML = (movie) => {
+		const generateMovieHTML = (movie, index) => {
 			return `
-        <div class="post">
-        <img class="search-results__img" src="${movie.poster.url}" alt="${
-				movie.name
-			}">
-            <p class="search-results__name">${movie.name}</p>
-            <p class="search-results__par">${movie.countries
-							.map((country) => country.name)
-							.join(", ")}</p>
-            <p class="search-results__par">${movie.year}</p>
-            <button class="btn__add" type="button">Add to my film list</button>
-        </div>`;
+		  <div class="post">
+			<img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+			<p class="search-results__name">${movie.name}</p>
+			<p class="search-results__par">${movie.countries
+				.map((country) => country.name)
+				.join(", ")}</p>
+			<p class="search-results__par">${movie.year}</p>
+			<button id="btn__add_${index}" class="btn__add" type="button">Add to my film list</button>
+		  </div>`;
 		};
-		const movieHTML = generateMovieHTML(movie);
+		const movieHTML = generateMovieHTML(movie, i);
 		postMovies.innerHTML += movieHTML; // всё, добавлена
 	}
+
+	// Получаем все кнопки "Add to my film list" в массив
+	const addButtons = document.querySelectorAll(".btn__add");
+
+	// Перебираем массив кнопок и присваиваем каждой свой id
+	addButtons.forEach((button, index) => {
+		button.setAttribute("id", `btn__add_${index}`);
+	});
 };
 document
 	.querySelector(".section-search__glow-on-hover")
 	.addEventListener("click", fetchFilteredMovies);
 
 // ВСЁ, КОНЕЦ.
-
-const seebtn = document.querySelector(".btn__add");
-let tasks = []; // создаем пустой массив для хранения задач
-// Загрузка задач из Local Storage при загрузке страницы
-if (localStorage.getItem("tasks")) {
-	tasks = JSON.parse(localStorage.getItem("tasks"));
-}
-function WantToSeeIt() {
-	// Получить ссылку на элемент, который нужно переместить
-	let sourceDiv = document.getElementById("post");
-
-	// Получить ссылку на элемент, в который нужно вставить содержимое
-	let destinationDiv = document.getElementById("film_list-movie");
-
-	// Переместить содержимое
-	destinationDiv.appendChild(sourceDiv.firstChild);
-}
-seebtn.addEventListener("click", WantToSeeIt);
 
 // Lena
 // const switcher = document.querySelector(".section-search__label");
@@ -380,3 +366,44 @@ function subscribeCheckValidity(e) {
 }
 submit.addEventListener("click", subscribeCheckValidity);
 // Lena
+
+/* Арина начало кода*/
+// Функция для добавления фильма в блок "Хочу посмотреть"
+function wantToSeeIt(event) {
+	if (event.target.classList.contains("btn__add")) {
+		let addButton = event.target;
+		let movie = addButton.parentNode;
+		let watchList = document.querySelector(".film_list-movie");
+		// Удаление кнопки "Add to my film list" из оригинального фильма
+		addButton.remove();
+		// Клонирование элемент фильма
+		let clonedMovie = movie.cloneNode(true);
+		// Добавляем чекбокс с классом check_movie
+		let checkbox = document.createElement("input");
+		checkbox.type = "checkbox";
+		checkbox.className = "check_movie";
+		clonedMovie.insertBefore(checkbox, clonedMovie.firstChild);
+		watchList.appendChild(clonedMovie);
+		movie.remove();
+	}
+}
+
+// Функция для удаления фильма из списка "Хочу посмотреть"
+function removeFromWatchList(event) {
+	if (event.target.classList.contains("check_movie")) {
+		let movie = event.target.parentNode;
+		movie.remove();
+	}
+}
+
+// Обработчик событий для добавления фильма в список "Хочу посмотреть"
+document
+	.querySelector(".search-results__conteiner")
+	.addEventListener("click", wantToSeeIt);
+
+// Обработчик событий для удаления фильма из списка "Хочу посмотреть"
+document
+	.querySelector(".film_list-movie")
+	.addEventListener("change", removeFromWatchList);
+
+/* 	Конец кода */
