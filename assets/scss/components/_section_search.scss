@@ -17,12 +17,13 @@
 		@extend %font-family_jost;
 		color: white;
 		font-weight: 400;
-		font-size: 1.5rem;
+		font-size: 2.5rem;
 		@media screen and (max-width: 740px) {
 			margin: 1vw 0 1vw 0;
+			font-size: 1.5rem;
 		}
 	}
-	&__switch{
+	&__switch {
 		display: flex;
 	}
 	&__title_two {
@@ -32,11 +33,13 @@
 		color: white;
 		font-weight: 400;
 		line-height: 26px;
+		font-size: 1.5rem;
 		@media screen and (max-width: 740px) {
 			padding: 0 1vw 0 0;
 		}
 		@media screen and (max-width: 460px) {
 			margin: 0;
+			font-size: 1.3rem;
 		}
 	}
 	&__title_three {
@@ -46,8 +49,10 @@
 		color: white;
 		font-weight: 400;
 		line-height: 26px;
+		font-size: 1.5rem;
 		@media screen and (max-width: 460px) {
 			margin: 0;
+			font-size: 1.3rem;
 		}
 	}
 	&__select_search_one {
@@ -84,7 +89,7 @@
 		display: block;
 		border-radius: 1rem;
 		position: relative;
-		margin: 1.5rem 0 0 0;
+		margin: 2rem 0 0 0;
 		@media screen and (max-width: 460px) {
 			margin: 1vw 0 2vw 0;
 		}
@@ -179,13 +184,13 @@
 		margin: 2vw 0 0 0;
 	}
 	@media screen and (max-width: 740px) {
-		width: 100%;
+		width: 80%;
 		margin-left: 3vw;
 	}
 	@media screen and (max-width: 496px) {
 		margin-left: 18vw;
 	}
-	&__checkbox{
+	&__checkbox {
 		width: 33%;
 		margin-bottom: 3px;
 		@media screen and (max-width: 1416px) {

@@ -59,6 +59,11 @@ function submitModal() {
 		return;
 	}
 
+	if (!checkboxInput.checked) {
+		alert("Please accept the terms and conditions");
+		return;
+	}
+
 	if (passwordValue === repeatValue) {
 		alert("Welcome!");
 	} else {
@@ -71,6 +76,10 @@ document.getElementById("validate").addEventListener("click", function () {
 	//чекбоксы активны при регистрации
 	const checkMovie = document.querySelectorAll(".check_movie");
 	checkMovie.forEach((elem) => {
+		elem.removeAttribute("disabled");
+	});
+	const btnAddFilm = document.querySelectorAll(".btn__add");
+	btnAddFilm.forEach((elem) => {
 		elem.removeAttribute("disabled");
 	});
 });
@@ -282,34 +291,29 @@ const fetchFilteredMovies = async () => {
 		countrySelect,
 		genreCheckboxes
 	);
+	console.log(res);
 	const postMovies = document.querySelector(".search-results__conteiner");
 	postMovies.innerHTML = "";
-	for (let i = 0; i < res.docs.length; i++) {
+	for (let i = 0; i <= res.docs.length; i++) {
 		const movie = res.docs[i];
 		console.log(movie);
-		const generateMovieHTML = (movie, index) => {
+		const generateMovieHTML = (movie) => {
 			return `
-		  <div class="post">
-			<img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
-			<p class="search-results__name">${movie.name}</p>
-			<p class="search-results__par">${movie.countries
-				.map((country) => country.name)
-				.join(", ")}</p>
-			<p class="search-results__par">${movie.year}</p>
-			<button id="btn__add_${index}" class="btn__add" type="button">Add to my film list</button>
-		  </div>`;
+        <div class="post">
+            <img class="search-results__img" src="${movie.poster.url}" alt="${
+				movie.name
+			}">
+            <p class="search-results__name">${movie.name}</p>
+            <p class="search-results__par">${movie.countries
+							.map((country) => country.name)
+							.join(", ")}</p>
+            <p class="search-results__par">${movie.year}</p>
+            <button class="btn__add" disabled>Add to my film list</button>
+        </div>`;
 		};
-		const movieHTML = generateMovieHTML(movie, i);
+		const movieHTML = generateMovieHTML(movie);
 		postMovies.innerHTML += movieHTML; // всё, добавлена
 	}
-
-	// Получаем все кнопки "Add to my film list" в массив
-	const addButtons = document.querySelectorAll(".btn__add");
-
-	// Перебираем массив кнопок и присваиваем каждой свой id
-	addButtons.forEach((button, index) => {
-		button.setAttribute("id", `btn__add_${index}`);
-	});
 };
 document
 	.querySelector(".section-search__glow-on-hover")
