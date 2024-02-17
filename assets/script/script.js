@@ -12,76 +12,71 @@ const checkboxInput = document.getElementById("checkbox_input");
 const validateButton = document.getElementById("validate");
 
 function submitModal() {
-  let nameValue = nameInput.value;
-  if (nameValue.length < 2) {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter your name please, at least 2 characters");
-    return;
-  } else {
+	let nameValue = nameInput.value;
+	if (nameValue.length < 2) {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter your name please, at least 2 characters");
+		return;
+	} else {
+	}
+	let emailValue = emailInput.value;
+	const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (regexpEmail.test(emailValue)) {
+		console.log("it works :)");
+	} else {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter a valid e-mail please");
+		return;
+	}
+	let ageValue = ageInput.value;
+	if (ageValue.length === 0) {
+		passwordInput.value = "";
+		repeatInput.value = "";
+		alert("Enter your age please");
+		return;
+	}
+	let passwordValue = passwordInput.value;
+	let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+	if (!regexpPassword.test(passwordValue)) {
+		console.log("it works too");
+		repeatInput.value = "";
+		alert("Enter your password please");
+		return;
+	} else {
+	}
 
-  };
-  let emailValue = emailInput.value;
-  const regexpEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (regexpEmail.test(emailValue)) {
-    console.log('it works :)')
-  } else {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter a valid e-mail please");
-    return;
-  };
-  let ageValue = ageInput.value;
-  if (ageValue.length === 0) {
-    passwordInput.value = "";
-    repeatInput.value = "";
-    alert("Enter your age please");
-    return;
-  }
-  let passwordValue = passwordInput.value;
-  let regexpPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-  if (!regexpPassword.test(passwordValue)) {
-    console.log('it works too');
-    repeatInput.value = "";
-    alert("Enter your password please");
-    return;
-  }
-  else {
-  };
+	let repeatValue = repeatInput.value;
+	if (repeatValue.length === 0) {
+		alert("Repeat your password please");
+		return;
+	} else {
+	}
 
-  let repeatValue = repeatInput.value;
-  if (repeatValue.length === 0) {
-    alert("Repeat your password please");
-    return;
-  }
-  else {
-  };
+	if (!checkboxInput.checked) {
+		alert("Please accept the terms and conditions");
+		return;
+	}
 
-  if (!checkboxInput.checked) {
-    alert("Please accept the terms and conditions")
-    return;
-  }
-
-  if (passwordValue === repeatValue) {
-    alert("Welcome!");
-  }
-  else {
-    alert("Password mismatch");
-  };
-};
-validateButton.addEventListener('click', submitModal);
-//чекбоксы активны при регистрации 
-document.getElementById('validate').addEventListener('click', function () {
-
-  //чекбоксы активны при регистрации 
-  const checkMovie = document.querySelectorAll('.check_movie');
-  checkMovie.forEach((elem) => {
-    elem.removeAttribute('disabled');
-  });
-  const btnAddFilm = document.querySelectorAll('.btn__add');
-  btnAddFilm.forEach((elem) => {
-    elem.removeAttribute('disabled');
-  });
+	if (passwordValue === repeatValue) {
+		alert("Welcome!");
+	} else {
+		alert("Password mismatch");
+	}
+}
+validateButton.addEventListener("click", submitModal);
+//чекбоксы активны при регистрации
+document.getElementById("validate").addEventListener("click", function () {
+	//чекбоксы активны при регистрации
+	const checkMovie = document.querySelectorAll(".check_movie");
+	checkMovie.forEach((elem) => {
+		elem.removeAttribute("disabled");
+	});
+	const btnAddFilm = document.querySelectorAll(".btn__add");
+	btnAddFilm.forEach((elem) => {
+		elem.removeAttribute("disabled");
+	});
 });
 validateButton.addEventListener("click", submitModal);
 
@@ -119,7 +114,7 @@ myModal.addEventListener("click", (event) => {
 //Блок Софии
 //Начало поиска по названию
 const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
-const API_URL_SEARCH = 'https://api.kinopoisk.dev/v1.4/movie/search';
+const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
 const fetchMoviesByName = async (query, page = 1, limit = 9) => {
   const encodedQuery = encodeURIComponent(query);
@@ -129,45 +124,49 @@ const fetchMoviesByName = async (query, page = 1, limit = 9) => {
     "X-API-KEY": API_KEY,
   };
 
-  try {
-    const response = await fetch(url, { headers });
+	try {
+		const response = await fetch(url, { headers });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+		if (!response.ok) {
+			throw new Error(`HTTP error! Status: ${response.status}`);
+		}
 
-    const data = await response.json();
-    console.log("Response from API:", data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching movies:", error.message);
-    return { films: [] };
-  }
+		const data = await response.json();
+		console.log("Response from API:", data);
+		return data;
+	} catch (error) {
+		console.error("Error fetching movies:", error.message);
+		return { films: [] };
+	}
 };
 
 function getClassByRate(vote) {
-  if (vote >= 7) {
-    return "green";
-  } else if (vote > 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
+	if (vote >= 7) {
+		return "green";
+	} else if (vote > 5) {
+		return "orange";
+	} else {
+		return "red";
+	}
 }
 
 function showMovies(data) {
-  const moviesEl = document.querySelector(".search-results__conteiner");
-  moviesEl.innerHTML = "";
+	const moviesEl = document.querySelector(".search-results__conteiner");
+	moviesEl.innerHTML = "";
 
-  if (data && data.docs && Array.isArray(data.docs)) {
-    data.docs.forEach((movie) => {
-      const movieEl = document.createElement("div");
-      const generateMovieHTML = (movie) => {
-        return `
+	if (data && data.docs && Array.isArray(data.docs)) {
+		data.docs.forEach((movie) => {
+			const movieEl = document.createElement("div");
+			const generateMovieHTML = (movie) => {
+				return `
         <div class="post">
-            <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <img class="search-results__img" src="${movie.poster.url}" alt="${
+					movie.name
+				}">
             <p class="search-results__name">${movie.name}</p>
-            <p class="search-results__par">${movie.countries.map(country => country.name).join(', ')}</p>
+            <p class="search-results__par">${movie.countries
+							.map((country) => country.name)
+							.join(", ")}</p>
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
@@ -183,14 +182,14 @@ const form = document.querySelector(".search_movie");
 const search = document.querySelector(".inputHeader");
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+	e.preventDefault();
 
-  if (search.value) {
-    const moviesData = await fetchMoviesByName(search.value);
-    showMovies(moviesData);
+	if (search.value) {
+		const moviesData = await fetchMoviesByName(search.value);
+		showMovies(moviesData);
 
-    search.value = "";
-  }
+		search.value = "";
+	}
 });
 //Конец поиска по названию
 //alert для меню
@@ -246,45 +245,53 @@ function closeOnClick() {
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
 // и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
-const token = 'YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C';
+const token = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const fetchFiltrMovies = async (
-    year,
-    countrie,
-    genres,
-    page = 1,
-    limit = 9
+	year,
+	countrie,
+	genres,
+	page = 1,
+	limit = 9
 ) => {
-    const switcherMovieSeries = document.getElementById("switch") // это переключатель с фильмов на сериалы
-    let responseURL;
-    if (switcherMovieSeries.checked) {
-        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
-    } else {
-        responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
-    }
-    const url = responseURL;
-    const headers = {
-    accept: "application/json",
-    "X-API-KEY": token,
-    };
-    const response = await fetch(url, { headers });
-    const data = await response.json();
-    return data;
+	const switcherMovieSeries = document.getElementById("switch"); // это переключатель с фильмов на сериалы
+	let responseURL;
+	if (switcherMovieSeries.checked) {
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+	} else {
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
+	}
+	const url = responseURL;
+	const headers = {
+		accept: "application/json",
+		"X-API-KEY": token,
+	};
+	const response = await fetch(url, { headers });
+	const data = await response.json();
+	return data;
 };
 const fetchFilteredMovies = async () => {
-    const yearSelect = document.getElementById('years-select').value;
-    const countrySelect = document.getElementById('country_select').value;
-    const genreCheckboxes = Array.from(document.querySelectorAll('.container-input__tag[name="genre"]:checked')).map(checkbox => checkbox.value);
-    const res = await fetchFiltrMovies(yearSelect, countrySelect, genreCheckboxes);
-    console.log(res);
-    const postMovies = document.querySelector(".search-results__conteiner");
-    postMovies.innerHTML ='';
-    for(let i = 0; i <= res.docs.length; i++){
-      const movie = res.docs[i];
-      console.log(movie);
-      const generateMovieHTML = (movie) => {
-        return `
+	const yearSelect = document.getElementById("years-select").value;
+	const countrySelect = document.getElementById("country_select").value;
+	const genreCheckboxes = Array.from(
+		document.querySelectorAll('.container-input__tag[name="genre"]:checked')
+	).map((checkbox) => checkbox.value);
+	const res = await fetchFiltrMovies(
+		yearSelect,
+		countrySelect,
+		genreCheckboxes
+	);
+	console.log(res);
+	const postMovies = document.querySelector(".search-results__conteiner");
+	postMovies.innerHTML = "";
+	for (let i = 0; i <= res.docs.length; i++) {
+		const movie = res.docs[i];
+		console.log(movie);
+		const generateMovieHTML = (movie) => {
+			return `
         <div class="post">
-            <img class="search-results__img" src="${movie.poster.url}" alt="${movie.name}">
+            <img class="search-results__img" src="${movie.poster.url}" alt="${
+				movie.name
+			}">
             <p class="search-results__name">${movie.name}</p>
             <p class="search-results__par">${movie.countries
 							.map((country) => country.name)
@@ -292,10 +299,10 @@ const fetchFilteredMovies = async () => {
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
-      };
-      const movieHTML = generateMovieHTML(movie);
-      postMovies.innerHTML += movieHTML; // всё, добавлена
-      }
+		};
+		const movieHTML = generateMovieHTML(movie);
+		postMovies.innerHTML += movieHTML; // всё, добавлена
+	}
 };
 document
 	.querySelector(".section-search__glow-on-hover")
@@ -450,7 +457,7 @@ function displayWatchListMovies() {
 	});
 }
 
-// Вызов функции для отображения сохраненных фильмов при загрузке страницы
+// Вызываем функцию для отображения сохраненных фильмов при загрузке страницы
 window.addEventListener("load", displayWatchListMovies);
 
 // Обработчик событий для добавления фильма в список "Хочу посмотреть"
