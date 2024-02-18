@@ -107,12 +107,13 @@ myModal.addEventListener("click", (event) => {
 	if (event._isClickWithInModal) return;
 	event.currentTarget.classList.remove("open");
 });
+//Часть Софии
 //НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
 const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
-const fetchMoviesByName = async (query, page = 1, limit = 10) => {
+const fetchMoviesByName = async (query, page = 1, limit = 9) => {
 	const encodedQuery = encodeURIComponent(query);
 	const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
 	const headers = {
@@ -188,7 +189,14 @@ form.addEventListener("submit", async (e) => {
 		search.value = "";
 	}
 });
+//alert
+contactUs.addEventListener('click', function() {
+      alert('В процессе разработки');
+    });
 
+    allFilms.addEventListener('click', function() {
+      alert('В процессе разработки');
+    });
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
 const popup = document.querySelector("#popup");
