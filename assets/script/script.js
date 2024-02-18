@@ -1,8 +1,7 @@
 const fileName = "search_licon 1.png";
 const encodedFileName = encodeURIComponent(fileName);
-const url = `http://127.0.0.1:5500/assets/icons/${encodedFileName}`; // эта фигня убирает какие-то лишние пробелы
+const url = `http://127.0.0.1:5500/assets/icons/${encodedFileName}`;
 ("use strict");
-// валидация модального окна регистрации
 const nameInput = document.getElementById("name_input");
 const emailInput = document.getElementById("email_input");
 const ageInput = document.getElementById("age_input");
@@ -66,7 +65,6 @@ function submitModal() {
 	}
 }
 validateButton.addEventListener("click", submitModal);
-//чекбоксы активны при регистрации
 document.getElementById("validate").addEventListener("click", function () {
 	//чекбоксы активны при регистрации
 	const checkMovie = document.querySelectorAll(".check_movie");
@@ -227,12 +225,7 @@ function closeOnClick() {
 
 //БУРГЕР МЕНЮ КОНЕЦ
 
-//Конец части Софии
-//КОНЕЦ ПОИСКА
-
 // ЭТО ПОИСК ПО ПАРАМЕТРАМ,
-// Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
-// и фильтр фильмы-сериалы
 const findButton = document.querySelector(".section-search__glow-on-hover");
 const token = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const fetchFiltrMovies = async (
@@ -299,50 +292,6 @@ document
 	.querySelector(".section-search__glow-on-hover")
 	.addEventListener("click", fetchFilteredMovies);
 
-// ВСЁ, КОНЕЦ.
-
-// Lena
-// const switcher = document.querySelector(".section-search__label");
-// console.log(switcher);
-// let seriesArray = []; //series array
-
-// function getSeries() {
-//   let checkbox = document.getElementById("switch");
-//   if (checkbox.checked == true) {
-//     const fetchFiltrSeries = async (
-//       year,
-//       countrie,
-//       genres,
-//       page = 1,
-//       limit = 10,
-//       type = tv - series,
-//     ) => {
-//       const url = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}$type.name=${tv - series}`;
-//       const titles = {
-//         accept: "application/json",
-//         "X-API-KEY": token,
-//       };
-//       const response = await fetch(url, { titles });
-//       const data = await response.json();
-//       return data;
-//     };
-//     const fetchFilteredSeries = async () => {
-//       const series = Array.type[tv - series];
-//       const result = await fetchFiltrSeries;
-//       console.log(result);
-//     }
-//   }
-// };
-
-//     }
-// console.log(checkbox);
-// let output = [];
-// checkbox.forEach((checkbox) => {
-//     output.push(checkbox.value);
-//     // });
-//     // seriesArray = output;
-// }
-
 const submit = document.getElementById("submit");
 function subscribeCheckValidity(e) {
 	e.preventDefault();
@@ -371,9 +320,7 @@ function subscribeCheckValidity(e) {
 	}
 }
 submit.addEventListener("click", subscribeCheckValidity);
-// Lena
 
-/* Арина начало кода*/
 // Функция для добавления фильма в блок "Хочу посмотреть"
 function wantToSeeIt(event) {
 	if (event.target.classList.contains("btn__add")) {
