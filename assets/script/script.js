@@ -276,10 +276,6 @@ const fetchFilteredMovies = async () => {
 
   for (let i = 0; i <= res.docs.length; i++) {
 		const movie = res.docs[i];
-    if (!movie) {
-      alert("К сожалению по вашему запросу ничего не найдено, попробуйте изменить критерии поиска.");
-      return;
-  }
   if (!movie.poster.url) continue;
 		console.log(movie);
 		const generateMovieHTML = (movie) => {
@@ -299,7 +295,9 @@ const fetchFilteredMovies = async () => {
 		const movieHTML = generateMovieHTML(movie);
 		postMovies.innerHTML += movieHTML; // всё, добавлена
 	}
-} catch(error){console.error("Error fetching and displaying movies:", error);}
+} catch(error){
+  console.error("Error fetching and displaying movies:", error);
+  }
 };
 document
 	.querySelector(".section-search__glow-on-hover")
