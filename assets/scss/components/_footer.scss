@@ -1,58 +1,66 @@
 .footer_wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     color: white;
     @extend %font-family_jost;
-    justify-content: space-around;
     background-color: #1d1e24;
     align-items: center;
     padding-left: 2%;
+    height: 7vw;
+    @media screen and (max-width: 1000px) {
+		height: 10vw;
+	}
+    @media screen and (max-width: 600px) {
+		display: flex;
+        flex-direction: column;
+        height: auto;
+	}
 }
 
 .button {
     color: white;
     @extend %font-family_jost;
+    border-radius: 10px;
 }
 
-.footer__icon-up {
-    position: fixed;
-    bottom: 15px;
-    right: 2%;
-    z-index: 1;
-    border: medium none;
-    background-image: none;
-    background: transparent;
-    fill: lightgrey;
-    height: 15%;
-    width: 15%;
+#e-mail {
+    color: #1d1e24;
+    border-radius: 10px;
 }
 
 .messengers {
     display: flex;
-    margin: 5px;
+    margin: 1vw;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-@media screen and (max-width: 1023px) {
+.facebook,
+.insta,
+.twitter {
+    padding: 1%;
+    width: 10%;
+    height: 10%;
+    cursor: pointer;
+    @media screen and (max-width: 600px) {
+		width: 7vw;
+        height: 7vw;
+        margin-left: 1vw;
+	}
+}
 
-    .footer_wrapper,
-    .button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 2%;
-        font-size: 0.5em;
-    }
+.message {
+    display: flex;
+    color: white;
+    @extend %font-family_jost;
+    background-color: #1d1e24;
+    justify-content: center;
+}
 
-    .footer__icon-up {
-        height: 5%;
-        width: 5%;
-    }
-
-    #e-mail {
-        width: 20%;
-        height: 10%;
-    }
-
-    .messengers {
-        display: flex;
+.footer_wrapper-rules,
+.footer_wrapper-us,
+.footer_wrapper-contacts {
+    @media screen and (max-width: 740px) {
+        font-size: 0.8rem;
     }
 }
