@@ -31,5 +31,5 @@ Frontend-developers:
 - Stepanida Vakhotina - https://github.com/stephanidka
 - Elena Bulavkina - https://github.com/Sunkiti
 - Sofiia Karami Saliba - https://github.com/sofisaliba
-- Юлия Михайлов - https://github.com/rkvrpl
+- Mihailov Iulia - https://github.com/rkvrpl
 - Арина Крятова - https://github.com/Archik-K

@@ -39,9 +39,19 @@
 
 .film_list-movie{
     @extend %font-family_jost;
+    color: #000;
     font-weight: 400;
-    font-size: 1rem;
     align-self: flex-start;
+    font-size: 1.5rem;
+    @media screen and (max-width: 1024px) {
+        font-size: 1rem;
+    }
+    @media screen and (max-width: 425px) {
+        font-size: 1.3rem;
+    }
+    @media screen and (max-width: 375px) {
+        font-size: 1.4rem;
+    }
     @media screen and (max-width: 425px) {
         font-size: 1rem;
     }
