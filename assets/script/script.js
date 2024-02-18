@@ -109,20 +109,18 @@ myModal.addEventListener("click", (event) => {
 	if (event._isClickWithInModal) return;
 	event.currentTarget.classList.remove("open");
 });
+//НАЧАЛО ПОИСКА ПО НАЗВАНИЮ
 
-
-//Блок Софии
-//Начало поиска по названию
 const API_KEY = "YFBHP8N-H5Z4FKE-NCHH02R-Q15E27C";
 const API_URL_SEARCH = "https://api.kinopoisk.dev/v1.4/movie/search";
 
-const fetchMoviesByName = async (query, page = 1, limit = 9) => {
-  const encodedQuery = encodeURIComponent(query);
-  const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
-  const headers = {
-    accept: "application/json",
-    "X-API-KEY": API_KEY,
-  };
+const fetchMoviesByName = async (query, page = 1, limit = 10) => {
+	const encodedQuery = encodeURIComponent(query);
+	const url = `${API_URL_SEARCH}?page=${page}&limit=${limit}&query=${encodedQuery}`;
+	const headers = {
+		accept: "application/json",
+		"X-API-KEY": API_KEY,
+	};
 
 	try {
 		const response = await fetch(url, { headers });
@@ -156,6 +154,7 @@ function showMovies(data) {
 
 	if (data && data.docs && Array.isArray(data.docs)) {
 		data.docs.forEach((movie) => {
+      if (!movie.poster.url) return;
 			const movieEl = document.createElement("div");
 			const generateMovieHTML = (movie) => {
 				return `
@@ -170,12 +169,12 @@ function showMovies(data) {
             <p class="search-results__par">${movie.year}</p>
             <button class="btn__add" disabled>Add to my film list</button>
         </div>`;
-      };
-      const movieHTML = generateMovieHTML(movie);
-      movieEl.innerHTML += movieHTML;
-      moviesEl.appendChild(movieEl); 
-    });
-  }
+			};
+			const movieHTML = generateMovieHTML(movie);
+			movieEl.innerHTML += movieHTML;
+			moviesEl.appendChild(movieEl); // Append the movie element to the container
+		});
+	}
 }
 
 const form = document.querySelector(".search_movie");
@@ -191,16 +190,6 @@ form.addEventListener("submit", async (e) => {
 		search.value = "";
 	}
 });
-//Конец поиска по названию
-//alert для меню
-allFilms.addEventListener('click', function() {
-  alert('Данная ссылка находится в процессе разработки');
-});
-
-contactUs.addEventListener('click', function() {
-  alert('Данная ссылка находится в процессе разработки');
-});
-
 
 //БУРГЕР МЕНЮ НАЧАЛО
 const hamb = document.querySelector("#hamb");
@@ -239,7 +228,7 @@ function closeOnClick() {
 //БУРГЕР МЕНЮ КОНЕЦ
 
 //Конец части Софии
-
+//КОНЕЦ ПОИСКА
 
 // ЭТО ПОИСК ПО ПАРАМЕТРАМ,
 // Пока что он выводит фильмы в консоль, внутри этого кода надо прописать вывод на страницу
@@ -256,9 +245,9 @@ const fetchFiltrMovies = async (
 	const switcherMovieSeries = document.getElementById("switch"); // это переключатель с фильмов на сериалы
 	let responseURL;
 	if (switcherMovieSeries.checked) {
-		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&backdrop.url=!null`;
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=tv-series&&animated-series&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
 	} else {
-		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}&backdrop.url=!null`;
+		responseURL = `https://api.kinopoisk.dev/v1.4/movie?type=movie&&cartoon&&anime&page=${page}&limit=${limit}&selectFields=countries&selectFields=description&selectFields=name&selectFields=genres&selectFields=poster&selectFields=type&selectFields=shortDescription&selectFields=year&notNullFields=id&year=${year}&genres.name=${genres}&countries.name=${countrie}`;
 	}
 	const url = responseURL;
 	const headers = {
@@ -283,8 +272,10 @@ const fetchFilteredMovies = async () => {
 	console.log(res);
 	const postMovies = document.querySelector(".search-results__conteiner");
 	postMovies.innerHTML = "";
-	for (let i = 0; i <= res.docs.length; i++) {
+
+  for (let i = 0; i <= res.docs.length; i++) {
 		const movie = res.docs[i];
+    if (!movie.poster.url) continue;
 		console.log(movie);
 		const generateMovieHTML = (movie) => {
 			return `
@@ -379,6 +370,7 @@ function subscribeCheckValidity(e) {
 		el.innerHTML = mess;
 	}
 }
+submit.addEventListener("click", subscribeCheckValidity);
 // Lena
 
 /* Арина начало кода*/
